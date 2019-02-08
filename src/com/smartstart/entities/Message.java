@@ -28,7 +28,6 @@ public class Message {
     this.message_to = message_to;
     this.content = content;
     this.attachment = attachment;
-    this.date_message = new java.sql.Date();
     this.viewed = 0;
     
     }
