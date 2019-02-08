@@ -7,6 +7,7 @@ package com.smartstart.services;
 
 import com.smartstart.util.ConnectionDb;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,21 +20,14 @@ public class ChatService implements ChatServiceInterface {
         
     
     @Override
-    public void addMsg() {
-        try {
+    public void addMsg() throws SQLException {
+       
                 ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
-                String query = "Select * From application";
-			Statement st = cn.createStatement();
-			ResultSet rst = st.executeQuery(query);
-			
-			if(!rst.next())
-			{
-				System.out.println("it's ok");	
-			}
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+                String query = "INSERT INTO `messages`(`id_message`, `message_from`, `message_to`, `content`, `id_chat`, `attachement`) VALUES (?,?,?,?,?,?)";
+		PreparedStatement st  = cn.prepareStatement(query);
+                st.setString(1, "");
+           
 
     }
 
