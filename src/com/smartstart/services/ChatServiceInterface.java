@@ -7,6 +7,7 @@ package com.smartstart.services;
 
 import com.smartstart.entities.Message;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -15,6 +16,9 @@ import java.sql.SQLException;
 public interface ChatServiceInterface {
     
     public void addMsg(Message m) throws SQLException;
-    public void sendMsg();
+    public void sendMsgOnline() throws SQLException;
+    public void sendMsgOffline(Message m) throws SQLException;
+    public List<Integer> discussionList(int id) throws SQLException;
+    
     
 }

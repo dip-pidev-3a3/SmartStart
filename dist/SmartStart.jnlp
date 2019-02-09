@@ -8,7 +8,9 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SmartStart.jar" size="17847" download="eager" />
+    <jar href="SmartStart.jar" size="20116" download="eager" />
+    <jar href="lib\activation.jar" size="56290" download="eager" />
+    <jar href="lib\mail.jar" size="521000" download="eager" />
     <jar href="lib\mysql-connector-java-5.1.23-bin.jar" size="834126" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="SmartStart" >
