@@ -25,13 +25,15 @@ public class ChatServiceImpl implements ChatServiceInterface {
        
                 ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
-                String query = "INSERT INTO `messages`(`message_from`, `message_to`, `content`, `attachement` , `viewed`) VALUES (?,?,?,?,?)";
+                String query = "INSERT INTO `messages`(`message_from`, `message_to`, `content`, `attachement` , `date_message` , `viewed`) VALUES (?,?,?,?,?,?)";
 		PreparedStatement st  = cn.prepareStatement(query);
                 st.setInt(1, m.getMessage_from());
                 st.setInt(2,m.getMessage_to());
                 st.setString(3,m.getContent());
                 st.setString(4,m.getAttachment());
-                st.setInt(5,m.getViewed());
+                java.sql.Date date = new java.sql.Date(m.getDate_message().getTime());
+                st.setDate(5,date );
+                st.setInt(6,m.getViewed());
                 
            
 
