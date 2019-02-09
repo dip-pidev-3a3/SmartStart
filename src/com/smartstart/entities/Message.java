@@ -5,7 +5,7 @@
  */
 package com.smartstart.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -28,6 +28,7 @@ public class Message {
     this.message_to = message_to;
     this.content = content;
     this.attachment = attachment;
+    this.date_message = date_message;
     this.viewed = 0;
     
     }

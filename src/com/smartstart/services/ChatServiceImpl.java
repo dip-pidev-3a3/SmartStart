@@ -5,6 +5,7 @@
  */
 package com.smartstart.services;
 
+import com.smartstart.entities.Message;
 import com.smartstart.util.ConnectionDb;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,13 +21,18 @@ public class ChatServiceImpl implements ChatServiceInterface {
         
     
     @Override
-    public void addMsg() throws SQLException {
+    public void addMsg(Message m) throws SQLException {
        
                 ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
-                String query = "INSERT INTO `messages`(`id_message`, `message_from`, `message_to`, `content`, `id_chat`, `attachement`) VALUES (?,?,?,?,?,?)";
+                String query = "INSERT INTO `messages`(`message_from`, `message_to`, `content`, `attachement` , `viewed`) VALUES (?,?,?,?,?)";
 		PreparedStatement st  = cn.prepareStatement(query);
-                st.setString(1, "");
+                st.setInt(1, m.getMessage_from());
+                st.setInt(2,m.getMessage_to());
+                st.setString(3,m.getContent());
+                st.setString(4,m.getAttachment());
+                st.setInt(5,m.getViewed());
+                
            
 
     }
@@ -35,5 +41,5 @@ public class ChatServiceImpl implements ChatServiceInterface {
     public void sendMsg() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
