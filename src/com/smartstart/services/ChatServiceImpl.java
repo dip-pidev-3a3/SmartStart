@@ -16,7 +16,7 @@ import java.sql.Statement;
  *
  * @author diabl
  */
-public class ChatService implements ChatServiceInterface {
+public class ChatServiceImpl implements ChatServiceInterface {
         
     
     @Override
