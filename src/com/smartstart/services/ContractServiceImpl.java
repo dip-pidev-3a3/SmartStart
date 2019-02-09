@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -79,6 +80,18 @@ public class ContractServiceImpl implements ContractServiceInterface {
                 }
                 return lc;
                 
+    }
+
+    @Override
+    public List<Contract> listContractOrdred(int idEntreprise) throws SQLException {
+        List<Contract> lco = listContract(idEntreprise);
+        lco = lco.stream().sorted((a,b)->{if(a.getId_contract()>b.getId_contract())
+                                   return 1;
+                                   if(a.getId_contract()<b.getId_contract())
+                                   return -1;
+                                   else 
+                                   return 0;}).collect(Collectors.toList());
+        return lco;
     }
     
 }

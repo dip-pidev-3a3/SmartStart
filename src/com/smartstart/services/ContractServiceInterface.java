@@ -18,5 +18,6 @@ public interface ContractServiceInterface {
     public void updateContract(Contract c) throws SQLException ;
     public void removeContract(int id) throws SQLException ;
     public List<Contract> listContract(int idEntreprise) throws SQLException;
+    public List<Contract> listContractOrdred(int idEntreprise) throws SQLException;
     
 }
