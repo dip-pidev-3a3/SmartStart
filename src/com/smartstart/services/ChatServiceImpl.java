@@ -107,4 +107,14 @@ public class ChatServiceImpl implements ChatServiceInterface {
                 
     }
 
+    @Override
+    public ObservableList<Message> getMessages(int id_user1, int id_user2) throws SQLException {
+        ConnectionDb db = ConnectionDb.getInstance();
+                Connection cn = db.getCnx();
+                String query = "SELECT * FROM `message` WHERE (((`message_from` = "+id_user1+") AND (`message_to` = "+id_user2+")) OR ((`message_from` = "+id_user2+") AND (`message_to` = "+id_user1+")))";
+		Statement st  = cn.createStatement();
+                ResultSet rs = st.executeQuery(query);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

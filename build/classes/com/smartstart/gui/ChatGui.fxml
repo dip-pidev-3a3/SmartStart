@@ -132,7 +132,7 @@
                 <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
                     <children>
                        
-                        <Label text="Documents" textFill="#7c8184">
+                        <Label text="Chats" textFill="#7c8184">
                             <font>
                                 <Font name="Calibri Light" size="15.0" />
                             </font>
@@ -165,33 +165,33 @@
                         <DropShadow blurType="ONE_PASS_BOX" color="#e8e4e4" height="10.0" radius="4.5" width="10.0" />
                     </effect>
                     <children>
-                        <Label layoutX="14.0" layoutY="24.0" text="Display My Jobs" textFill="#7c8184">
+                        <Label layoutX="14.0" layoutY="24.0" text="Chats" textFill="#7c8184">
                             <font>
                                 <Font size="18.0" />
-                            </font>
-                        </Label>
-                       
-                        <Label alignment="CENTER" layoutX="659.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="round-lbl" text="8" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
                     </children>
                 </Pane>
                 <HBox alignment="CENTER">
                     <children>
-                  <TableView fx:id="table" prefHeight="439.0" prefWidth="721.0">
+                  <TableView fx:id="chats" prefHeight="439.0" prefWidth="721.0">
                      <columns>
-                        <TableColumn fx:id="coljob_title" prefWidth="75.0" text="Job Title" />
-                        <TableColumn fx:id="coljob_category" prefWidth="113.0" text="Job Category" />
-                        <TableColumn fx:id="colDuration" prefWidth="76.0" text="Duration" />
-                        <TableColumn fx:id="colExpiry_Date" prefWidth="101.0" text="Expiry Date" />
-                        <TableColumn fx:id="colAdded_date" prefWidth="94.0" text="Added Date" />
+                        <TableColumn fx:id="chat" prefWidth="197.0" text="Chat" />
+                        <TableColumn fx:id="messages" minWidth="0.0" prefWidth="523.0" text="Messages" />
                      </columns>
                   </TableView>
                     </children>
                 </HBox>
-            <TextField prefHeight="85.0" prefWidth="367.0" text="Your Message" />
+            <TextField fx:id="content" prefHeight="85.0" prefWidth="367.0" text="Your Message">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </TextField>
+            <Button fx:id="send" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Send">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
             </children>
         </VBox>
     </children>

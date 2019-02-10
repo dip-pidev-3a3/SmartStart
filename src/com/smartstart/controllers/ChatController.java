@@ -29,6 +29,7 @@ public class ChatController implements Initializable {
     @FXML
     private TableColumn<Message, String> messages;
     private ObservableList<Message> data;
+    
     ChatServiceImpl cs = new ChatServiceImpl();
 
     @Override
