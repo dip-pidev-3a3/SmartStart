@@ -174,20 +174,20 @@
                 </Pane>
                 <HBox alignment="CENTER">
                     <children>
-                  <TableView fx:id="table" prefHeight="439.0" prefWidth="721.0">
+                  <TableView fx:id="chats" prefHeight="439.0" prefWidth="721.0">
                      <columns>
-                        <TableColumn fx:id="coljob_title" prefWidth="197.0" text="Chat" />
-                        <TableColumn fx:id="coljob_category" minWidth="0.0" prefWidth="523.0" text="Messages" />
+                        <TableColumn fx:id="chat" prefWidth="197.0" text="Chat" />
+                        <TableColumn fx:id="messages" minWidth="0.0" prefWidth="523.0" text="Messages" />
                      </columns>
                   </TableView>
                     </children>
                 </HBox>
-            <TextField prefHeight="85.0" prefWidth="367.0" text="Your Message">
+            <TextField fx:id="content" prefHeight="85.0" prefWidth="367.0" text="Your Message">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </TextField>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Send">
+            <Button fx:id="send" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Send">
                <font>
                   <Font size="18.0" />
                </font>
