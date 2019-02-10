@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -86,7 +88,7 @@ public class ChatServiceImpl implements ChatServiceInterface {
 	}   
 
     @Override
-    public List<Integer> discussionList(int id) throws SQLException{
+    public ObservableList<Integer> discussionList(int id) throws SQLException{
         ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
                 String query = "SELECT * FROM `message` WHERE ((`message_from` = "+id+") OR (`message_to` = "+id+"))";
@@ -98,7 +100,8 @@ public class ChatServiceImpl implements ChatServiceInterface {
                     l_id.add(rs.getInt("message_to"));                  
                 }
                 l_id =  l_id.stream().distinct().filter(i->i!=id).collect(Collectors.toList());
-                return l_id;
+                ObservableList l_id_f = FXCollections.observableArrayList(l_id);
+                return l_id_f;
                 
     }
 
