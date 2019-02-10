@@ -12,16 +12,16 @@ package com.smartstart.entities;
 public class Application {
     private int id;
     private Opportunity opp;
-    private Fos_user freelancer;
+    //private Fos_user freelancer;
     private String state;
     private int opportunityId;
     private int freelancerId;
 public Application(){}
 
-public Application(int id,Opportunity opp,Fos_user freelancer,String state)
+public Application(int id,Opportunity opp/*,Fos_user freelancer*/,String state)
 {this.id=id;
 this.opp=opp;
-this.freelancer=freelancer;
+//this.freelancer=freelancer;
 this.state=state;
 
 }
@@ -51,8 +51,8 @@ public int getId()
 public Opportunity getOpp()
 {return opp;}
 
-public Fos_user getFreelancer()
-{return freelancer;}
+//public Fos_user getFreelancer()
+//{return freelancer;}
 
 public String getState()
 {return state;}

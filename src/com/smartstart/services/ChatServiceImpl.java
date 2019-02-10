@@ -27,6 +27,8 @@ import javax.mail.internet.MimeMessage;
  * @author diabl
  */
 public class ChatServiceImpl implements ChatServiceInterface {
+	
+	private Session session;
         
     
     @Override
