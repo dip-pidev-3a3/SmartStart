@@ -22,9 +22,10 @@ public class Opportunity {
     private Date job_duration;
     private Date Expiry_Date;
     private Date added_date;
-    private int id_entreprise;
+    private Integer id_entreprise;
     
     public Opportunity(){}
+    public Opportunity(String j,String j1,String j2,float b){this.job_category=j;this.job_description=j1;this.job_title=j2;this.budget=b;}
     public Opportunity(int id_opp,String job_title,String job_category,String job_description,float budget,int job_draft,Date job_duration,Date Expiry_date,Date Added_date,int id_entreprise){
         this.id_opp=id_opp;
         this.job_title = job_title;

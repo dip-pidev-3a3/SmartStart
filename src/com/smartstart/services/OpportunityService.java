@@ -14,21 +14,27 @@ import java.util.ArrayList;
 import java.util.List;
 import com.smartstart.entities.Opportunity;
 import com.smartstart.util.ConnectionDb;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
  * @author acmou
  */
-public class OpportunityService {
+public class OpportunityService implements OpporunityServiceInterface {
      public ConnectionDb cnx = ConnectionDb.getInstance();
      Connection connection=cnx.getCnx();
      public OpportunityService(){}
      Opportunity o=new Opportunity();
-     List<Opportunity> Listeopp=new ArrayList<>();
-    public void Display_Opportunity(){     
+     private ObservableList<Opportunity> Listeopp;
+    
+     
+     @Override
+    public ObservableList<Opportunity> Display_Opportunity(){     
         
        PreparedStatement ps=null;
 	ResultSet rs=null;
+        Listeopp=FXCollections.observableArrayList();
 	try {
 		String query="select * from opportunity";
 		ps=connection.prepareStatement(query);
@@ -60,6 +66,45 @@ public class OpportunityService {
 		System.out.println(e);
 	}
         Listeopp.forEach(e->System.out.println(e));
+        return Listeopp;
+     
+    }
+     public ObservableList<Opportunity> DisplayMy_Opportunities(int id_user){     
+        
+       PreparedStatement ps=null;
+	ResultSet rs=null;
+        Listeopp=FXCollections.observableArrayList();
+	try {
+		String query="select * from opportunity where id_entreprise="+id_user;
+		ps=connection.prepareStatement(query);
+		//ps.setString(1, sl_no);
+		System.out.println(ps);
+		rs=ps.executeQuery();
+		while(rs.next()){
+                    
+                   /* o.setId(rs.getInt(1));
+                    o.setJob_title(rs.getString(2));
+                    
+                    
+                    o.setJob_category(rs.getString(3));
+                    o.setJob_description(rs.getString(4));
+                    o.setBudget(rs.getFloat(5));
+                    o.setJob_draft(rs.getInt(6));
+                    o.setJob_Duration(rs.getTimestamp(7));
+                    o.setExpiry_date(rs.getDate(8));
+                    o.setAdded_date(rs.getDate(9));
+                    o.setIdEntreprise(rs.getInt(10));
+                    System.out.println("bij");*/
+                    
+                    Listeopp.add(new Opportunity(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getFloat(5),rs.getInt(6),rs.getDate(7),rs.getDate(8),rs.getDate(9),rs.getInt(10)));
+                                        
+
+		
+		}
+	} catch (Exception e) {
+		System.out.println(e);
+	}
+        return Listeopp;
      
     }
     public void create_Opportunity(Opportunity o){
@@ -120,7 +165,7 @@ public class OpportunityService {
 	}
 
 }
-    public void update_opportunity (Opportunity o,int id_opportunityC)
+    public void update_opportunity(Opportunity o, int id_opportunityC)
     {
         PreparedStatement ps=null;
         try
