@@ -42,6 +42,7 @@ public class DetailOpportunityGuiController implements Initializable {
    
     public void AfficherDetails(Opportunity Op)
     { O=Op;
+    
         
         System.out.println(O.getJob_title()+"bij");
          System.out.println(O.getJob_title());

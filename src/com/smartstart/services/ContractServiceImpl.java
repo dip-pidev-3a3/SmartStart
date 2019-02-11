@@ -15,6 +15,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -61,7 +63,7 @@ public class ContractServiceImpl implements ContractServiceInterface {
     }
 
     @Override
-    public List<Contract> listContract(int idEntreprise) throws SQLException {
+    public ObservableList<Contract> listContract(int idEntreprise) throws SQLException {
         ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
                 String query = "SELECT * FROM `contract`,'opportunity' WHERE `opportunity.id_entreprise` = "+idEntreprise;
@@ -78,7 +80,8 @@ public class ContractServiceImpl implements ContractServiceInterface {
                     c.setId_application(rs.getInt("id_application"));
                     lc.add(c);
                 }
-                return lc;
+                ObservableList lcf = FXCollections.observableArrayList(lc);
+                return lcf;
                 
     }
 
@@ -92,6 +95,30 @@ public class ContractServiceImpl implements ContractServiceInterface {
                                    else 
                                    return 0;}).collect(Collectors.toList());
         return lco;
+    }
+
+    @Override
+    public int CountContracts(int id_user) {
+        int toretrun=0;
+         PreparedStatement ps=null;
+         try
+         {
+             ConnectionDb db = ConnectionDb.getInstance();
+             Connection cn = db.getCnx();
+             String query="Select Count(*) from contract,application where ="+id_user;
+             ps=cn.prepareStatement(query);
+             System.out.println(ps);
+            ResultSet rs= ps.executeQuery();
+             while(rs.next())
+             {
+                 toretrun= rs.getInt(1);
+             }
+             
+         } catch(Exception e)
+         {
+             System.out.println(e);
+         }
+         return toretrun;
     }
     
 }
