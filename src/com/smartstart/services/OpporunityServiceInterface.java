@@ -19,12 +19,18 @@ public interface OpporunityServiceInterface {
 
     public ObservableList<Opportunity> DisplayMy_Opportunities(int id_user);
 
-    public void create_Opportunity(Opportunity o);
+    public void create_Opportunity(Opportunity o, int id_entreprise);
 
-    public void create_Opportunitydraft(Opportunity o);
+    public void create_Opportunitydraft(Opportunity o, int id_entreprise);
 
     public void delete_opporunity(int id_opp);
 
     public void update_opportunity(Opportunity o, int id_opportunityC);
+
+    public Opportunity Display_One_Opportunity(int id_opp);
+
+    ObservableList<Opportunity> DisplayMy_OpportunitiesDrafts(int id_user);
+
+    public void SetDraftTo_Opp(Opportunity o);
 
 }

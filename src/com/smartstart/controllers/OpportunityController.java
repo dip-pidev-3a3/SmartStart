@@ -29,20 +29,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class OpportunityController {
      public static void main(String[] args) throws ParseException {
-         /*OpportunityService p1=new OpportunityService();
+         OpportunityService p1=new OpportunityService();
        p1.Display_Opportunity();
        LocalDate today = LocalDate.now();
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+       Date d=new Date(0);
+       
        
        java.util.Date utilDate = new java.util.Date();
  java.sql.Date date = new java.sql.Date(utilDate.getTime());
 
     
-       Opportunity O=new Opportunity(1,"AddedJob","Mobile","android studio",400,0,date,date,date,1);
-       Opportunity O1=new Opportunity(1,"fathi","larou","larou",400,0,date,date,date,1);
-      // p1.create_Opportunity(O);
-       p1.delete_opporunity(5);
-       p1.update_opportunity(O1,2);*/
+       Opportunity O=new Opportunity(1,"AddedJob","Mobile","android studio",400,0,"44",d,d,1);
+       Opportunity O1=new Opportunity(1,"fathi","larou","larou",400,0,"44",date,date,1);
+       p1.create_Opportunity(O,1);
+       //p1.delete_opporunity(5);
+       //p1.update_opportunity(O1,2);
         
     }
      

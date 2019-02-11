@@ -19,6 +19,7 @@ public interface ChatServiceInterface {
     public void sendMsgOnline() throws SQLException;
     public void sendMsgOffline(Message m) throws SQLException;
     public ObservableList<Integer> discussionList(int id) throws SQLException;
+    public ObservableList<Message> getMessages(int id_user1,int id_user2) throws SQLException;
     
     
 }

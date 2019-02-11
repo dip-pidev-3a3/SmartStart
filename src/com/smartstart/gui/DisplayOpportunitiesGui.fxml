@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -22,9 +24,56 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.fxml.FXMLLoader?>
 
-<AnchorPane fx:id="parent" prefHeight="600" prefWidth="1024.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Profile_OpportunitiesController">
+<AnchorPane fx:id="parent" prefHeight="704.0" prefWidth="1115.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Profile_OpportunitiesController">
     <children>
-        <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="300.0" styleClass="sidebar">
+        <VBox layoutX="300.0" prefHeight="625.0" prefWidth="813.0">
+            <children>
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="813.0" style="-fx-background-color: #fff;" VBox.vgrow="ALWAYS">
+                    <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="#e8e4e4" height="10.0" radius="4.5" width="10.0" />
+                    </effect>
+                    <children>
+                        <Label layoutX="14.0" layoutY="24.0" text="Display My Jobs" textFill="#7c8184">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                       
+                        <Label fx:id="Nombre_Opp" alignment="CENTER" layoutX="150.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="28.0" style="-fx-background-color: #00A2D3;" styleClass="round-lbl" text="8" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                  <TextField fx:id="txtField" layoutX="240.0" layoutY="54.0" prefHeight="31.0" prefWidth="335.0" promptText="Search ..." />
+                    </children>
+                </Pane>
+                <HBox alignment="CENTER" prefHeight="557.0" prefWidth="813.0">
+               <children>
+                  <TableView fx:id="table" editable="true" prefHeight="518.0" prefWidth="813.0" tableMenuButtonVisible="true">
+                     <columns>
+                         <TableColumn fx:id="colid_opportunity" prefWidth="75.0" text="id" />
+                        <TableColumn fx:id="coljob_title" prefWidth="75.0" text="Job Title" />
+                        <TableColumn fx:id="coljob_category" prefWidth="113.0" text="Job Category" />
+                        <TableColumn fx:id="coljob_description" prefWidth="190.0" text="Job Description" />
+                        <TableColumn fx:id="colbudget" prefWidth="71.0" text="Budget" />
+                        <TableColumn fx:id="colDuration" prefWidth="76.0" text="Duration" />
+                        <TableColumn fx:id="colExpiry_Date" prefWidth="101.0" text="Expiry Date" />
+                        <TableColumn fx:id="colAdded_date" prefWidth="94.0" text="Added Date" />
+                     </columns>
+                     <columnResizePolicy>
+                      
+                     </columnResizePolicy>
+                  </TableView>
+                  <VBox prefHeight="525.0" prefWidth="0.0">
+                     <children>
+                        <VBox prefHeight="160.0" prefWidth="159.0" />
+                     </children>
+                  </VBox>
+               </children>
+                </HBox>
+            </children>
+        </VBox>
+        <VBox alignment="TOP_CENTER" prefHeight="704.0" prefWidth="300.0" styleClass="sidebar">
             <children>
                 <Label alignment="CENTER" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #00A2D3;" text="Smart Start" textFill="WHITE">
                     <padding>
@@ -148,7 +197,7 @@
                         
                     </cursor>
                 </HBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="box" VBox.vgrow="ALWAYS">
+                <VBox prefHeight="263.0" prefWidth="300.0" styleClass="box" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -158,42 +207,44 @@
                 </VBox>
             </children>
         </VBox>
-        <VBox layoutX="300.0" prefHeight="600.0" prefWidth="636.0">
-            <children>
-                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="724.0" style="-fx-background-color: #fff;" VBox.vgrow="ALWAYS">
-                    <effect>
-                        <DropShadow blurType="ONE_PASS_BOX" color="#e8e4e4" height="10.0" radius="4.5" width="10.0" />
-                    </effect>
-                    <children>
-                        <Label layoutX="14.0" layoutY="24.0" text="Display My Jobs" textFill="#7c8184">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                       
-                        <Label alignment="CENTER" layoutX="659.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="round-lbl" text="8" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
-                <HBox alignment="CENTER">
-                    <children>
-                  <TableView fx:id="table" prefHeight="525.0" prefWidth="721.0">
-                     <columns>
-                        <TableColumn fx:id="coljob_title" prefWidth="75.0" text="Job Title" />
-                        <TableColumn fx:id="coljob_category" prefWidth="113.0" text="Job Category" />
-                        <TableColumn fx:id="coljob_description" prefWidth="190.0" text="Job Description" />
-                        <TableColumn fx:id="colbudget" prefWidth="71.0" text="Budget" />
-                        <TableColumn fx:id="colDuration" prefWidth="76.0" text="Duration" />
-                        <TableColumn fx:id="colExpiry_Date" prefWidth="101.0" text="Expiry Date" />
-                        <TableColumn fx:id="colAdded_date" prefWidth="94.0" text="Added Date" />
-                     </columns>
-                  </TableView>
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
+      <HBox layoutX="311.0" layoutY="645.0" prefHeight="53.0" prefWidth="791.0">
+         <children>
+            <Button fx:id="DeleteOpp" mnemonicParsing="false" onAction="#RemoveOpportunity" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Delete Opportunity" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="36.0" />
+            <Button fx:id="Add_Opportunity" mnemonicParsing="false" onAction="#Add_an_opportunity" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Add Opportunity" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="38.0" />
+            <Button fx:id="displayopp" mnemonicParsing="false" onAction="#displayDetails" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Display Details" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="38.0" />
+            <Button fx:id="Show_My_Draft" mnemonicParsing="false" onAction="#Show_Draft" prefHeight="40.0" prefWidth="137.0" style="-fx-background-color: Grey;" stylesheets="@stylesheet.css" text="Show My Drafts" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="53.0" prefWidth="68.0" />
+            <Button fx:id="reload" mnemonicParsing="false" onAction="#ExportToExcel" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Export" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="53.0" prefWidth="68.0" />
+            <Button fx:id="reload1" mnemonicParsing="false" onAction="#reload" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Refresh" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
     </children>
 </AnchorPane>
