@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.*?>
-<?import com.jfoenix.controls.*?>
-<?import com.jfoenix.validation.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -25,180 +23,43 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.fxml.FXMLLoader?>
 
-<AnchorPane fx:id="parent" prefHeight="600" prefWidth="1024.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Profile_OpportunitiesController">
+<AnchorPane fx:id="parent" prefHeight="556.0" prefWidth="713.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Add_OpportunitiesController">
     <children>
-        <VBox alignment="TOP_CENTER" prefHeight="600.0" prefWidth="300.0" styleClass="sidebar">
-            <children>
-                <Label alignment="CENTER" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #00A2D3;" text="Smart Start" textFill="WHITE">
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <font>
-                        <Font name="Ebrima" size="18.0" />
-                    </font>
-                </Label>
-                <HBox alignment="CENTER_LEFT">
-                    <children>
+      <BorderPane prefHeight="364.0" prefWidth="721.0" AnchorPane.bottomAnchor="192.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane prefHeight="272.0" prefWidth="787.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="job_title" layoutX="40.0" layoutY="38.0" promptText="Job Title" />
+                  <TextArea fx:id="job_description" layoutX="34.0" layoutY="182.0" prefHeight="143.0" prefWidth="290.0" promptText="Job Description" />
+                  <DatePicker fx:id="Expiry_Date" layoutX="446.0" layoutY="139.0" promptText="Expiry Date" />
+                  <ComboBox fx:id="Needed_skills" layoutX="465.0" layoutY="38.0" prefWidth="150.0" promptText="Needed Skills" />
+                  <Button fx:id="Save_and_exit" layoutX="481.0" layoutY="393.0" mnemonicParsing="false" onAction="#SaveOpportunityAndExit" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Save And Exit" textFill="WHITE">
+                     <cursor>
                         
-                        <TextField promptText="Search" style="-fx-background-color: transparent; -fx-text-fill: #fff;" HBox.hgrow="ALWAYS">
-                            <font>
-                                <Font name="Calibri Light" size="14.0" />
-                            </font>
-                        </TextField>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
-                    <children>
-                        
-                        <Label text="Dashboard" textFill="#7c8184">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <VBox.margin>
-                        <Insets top="10.0" />
-                    </VBox.margin>
-                    <cursor>
-                     
-                    </cursor>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
-                    <children>
-                       
-                        <Label text="Projects" textFill="#7c8184">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <cursor>
-                        
-                    </cursor>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
-                    <children>
-                        
-                        <Label text="Users" textFill="#7c8184">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <cursor>
-                        
-                    </cursor>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
-                    <children>
-                        
-                        <Label text="Resource" textFill="#7c8184">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <cursor>
-                        
-                    </cursor>
-                </HBox>
-                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
-                    <children>
-                       
-                        <Label text="Documents" textFill="#7c8184">
-                            <font>
-                                <Font name="Calibri Light" size="15.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets left="10.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <padding>
-                        <Insets left="10.0" />
-                    </padding>
-                    <cursor>
-                        
-                    </cursor>
-                </HBox>
-                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="box" VBox.vgrow="ALWAYS">
-                    <VBox.margin>
-                        <Insets />
-                    </VBox.margin>
-                    <padding>
-                        <Insets left="10.0" top="10.0" />
-                    </padding>
-                </VBox>
-            </children>
-        </VBox>
-          <Pane layoutX="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="75.0" prefWidth="724.0" style="-fx-background-color: #fff;">
-              <effect>
-                  <DropShadow blurType="ONE_PASS_BOX" color="#e8e4e4" height="10.0" radius="4.5" width="10.0" />
-              </effect>
-              <children>
-                  <Label layoutX="14.0" layoutY="24.0" text="Add An Opportunity" textFill="#7c8184">
-                      <font>
-                          <Font size="18.0" />
-                      </font>
-                  </Label>
-                 
-                        <Label alignment="CENTER" layoutX="659.0" layoutY="18.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="round-lbl" text="8" textFill="WHITE">
-                      <font>
-                          <Font name="System Bold" size="12.0" />
-                      </font>
-                  </Label>
-              </children>
-          </Pane>
-      <Pane layoutX="302.0" layoutY="74.0" prefHeight="526.0" prefWidth="724.0">
-         <children>
-            <TextField layoutX="32.0" layoutY="38.0" promptText="Job Title" />
-            <ComboBox layoutX="32.0" layoutY="102.0" prefWidth="150.0" promptText="Job Category" />
-            <TextArea layoutX="34.0" layoutY="182.0" prefHeight="143.0" prefWidth="290.0" promptText="Job Description" />
-            <TextField layoutX="32.0" layoutY="369.0" promptText="Budget" />
-            <DatePicker layoutX="444.0" layoutY="104.0" promptText="Duration" />
-            <DatePicker layoutX="446.0" layoutY="185.0" promptText="Expiry Date" />
-            <ComboBox layoutX="446.0" layoutY="38.0" prefWidth="150.0" promptText="Needed Skills" />
-            <Button fx:id="Save_and_exit" layoutX="503.0" layoutY="420.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Save And Exit" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button fx:id="Add_Opportunity" layoutX="315.0" layoutY="420.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Add Opportunity" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-         </children>
-      </Pane>
+                     </cursor>
+                  </Button>
+                  <TextField fx:id="Job_category" layoutX="40.0" layoutY="105.0" promptText="Job Category" />
+               </children>
+            </Pane>
+         </center>
+         <top>
+            <Label fx:id="type" alignment="CENTER" prefHeight="92.0" prefWidth="853.0" style="-fx-background-color: #00A2D3;" styleClass="card-01" stylesheets="@stylesheet.css" text="Add An Opportunity" textFill="#f2e4e4" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </top></BorderPane>
+      <Button fx:id="Add_Opportunity" layoutX="276.0" layoutY="485.0" mnemonicParsing="false" onAction="#Add_OpportunityToDb" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Add Opportunity" textFill="WHITE">
+         <cursor>
+           
+         </cursor>
+      </Button>
+      <TextField fx:id="Budget" layoutX="444.0" layoutY="333.0" prefHeight="31.0" prefWidth="219.0" promptText="Budget" />
+      <Separator layoutX="2.0" layoutY="449.0" prefHeight="7.0" prefWidth="713.0" />
+      <Button fx:id="CancelButton" layoutX="66.0" layoutY="485.0" mnemonicParsing="false" onAction="#annuler" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Cancel" textFill="WHITE">
+         <cursor>
+          
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>

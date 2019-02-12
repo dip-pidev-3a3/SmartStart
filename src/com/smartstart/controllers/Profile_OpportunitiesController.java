@@ -15,6 +15,10 @@ import java.io.IOException;
 
 import java.sql.Date;
 import java.net.URL;
+<<<<<<< HEAD
+import org.apache.poi.hssf.usermodel.HSSFCell;
+=======
+>>>>>>> 9f71d8dd43a3ff6bae69928df92763b4f211e9c9
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -79,10 +83,24 @@ public class Profile_OpportunitiesController implements Initializable {
     @FXML
     private TextField txtField;
     @FXML
+<<<<<<< HEAD
+    private Button displayopp;
+    @FXML
+    private Label Nombre_Opp;
+    @FXML
+    private Button reload1;
+    @FXML
+=======
+>>>>>>> 9f71d8dd43a3ff6bae69928df92763b4f211e9c9
     private Button DeleteOpp;
     @FXML
     private Button Add_Opportunity;
     @FXML
+<<<<<<< HEAD
+    private Button Show_My_Draft;
+    @FXML
+    private Button reload;
+=======
     private Button displayopp;
     @FXML
     private Button Show_My_Draft;
@@ -90,6 +108,7 @@ public class Profile_OpportunitiesController implements Initializable {
     private Button reload;
     @FXML
     private Label Nombre_Opp;
+>>>>>>> 9f71d8dd43a3ff6bae69928df92763b4f211e9c9
 
     @FXML
     public void displayDetails(ActionEvent event) {
