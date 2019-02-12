@@ -23,33 +23,32 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.fxml.FXMLLoader?>
 
-<AnchorPane fx:id="parent" prefHeight="556.0" prefWidth="713.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Add_OpportunitiesController">
+<AnchorPane fx:id="parent" prefHeight="556.0" prefWidth="713.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.AddContractController">
     <children>
       <BorderPane prefHeight="364.0" prefWidth="721.0" AnchorPane.bottomAnchor="192.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
             <Pane prefHeight="272.0" prefWidth="787.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextArea fx:id="job_description" layoutX="34.0" layoutY="182.0" prefHeight="143.0" prefWidth="290.0" promptText="Job Description" />
-                  <DatePicker fx:id="Expiry_Date" layoutX="40.0" layoutY="51.0" promptText="Start Date" />
-                  <Button fx:id="Save_and_exit" layoutX="481.0" layoutY="393.0" mnemonicParsing="false" onAction="#SaveOpportunityAndExit" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Save And Exit" textFill="WHITE">
+                  <DatePicker fx:id="startDate" layoutX="40.0" layoutY="67.0" promptText="Start Date" />
+                  <Button fx:id="addExport" layoutX="481.0" layoutY="393.0" mnemonicParsing="false" onAction="#AddContractandExport" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Add And Export" textFill="WHITE">
                      <cursor>
                         
                      </cursor>
                   </Button>
-                  <DatePicker fx:id="Expiry_Date1" layoutX="40.0" layoutY="111.0" promptText="Finish Date" />
-                  <TextField fx:id="Budget" layoutX="424.0" layoutY="48.0" prefHeight="31.0" prefWidth="219.0" promptText="Sum" />
-                  <TextField fx:id="Budget1" layoutX="424.0" layoutY="108.0" prefHeight="31.0" prefWidth="219.0" promptText="Freelancer" />
+                  <DatePicker fx:id="finishDate" layoutX="40.0" layoutY="171.0" promptText="Finish Date" />
+                  <TextField fx:id="sum" layoutX="381.0" layoutY="105.0" prefHeight="31.0" prefWidth="219.0" promptText="Sum" />
+                  <ComboBox fx:id="Payment" layoutX="381.0" layoutY="227.0" prefHeight="30.0" prefWidth="219.0" promptText="Payment Method" />
                </children>
             </Pane>
          </center>
          <top>
-            <Label fx:id="type" alignment="CENTER" prefHeight="92.0" prefWidth="853.0" style="-fx-background-color: #00A2D3;" styleClass="card-01" stylesheets="@stylesheet.css" text="Add An Opportunity" textFill="#f2e4e4" BorderPane.alignment="CENTER">
+            <Label fx:id="type" alignment="CENTER" prefHeight="92.0" prefWidth="853.0" style="-fx-background-color: #00A2D3;" styleClass="card-01" stylesheets="@stylesheet.css" text="Create New Contract" textFill="#f2e4e4" BorderPane.alignment="CENTER">
                <font>
                   <Font size="28.0" />
                </font>
             </Label>
          </top></BorderPane>
-      <Button fx:id="Add_Opportunity" layoutX="276.0" layoutY="485.0" mnemonicParsing="false" onAction="#Add_OpportunityToDb" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Add Opportunity" textFill="WHITE">
+      <Button fx:id="add" layoutX="276.0" layoutY="485.0" mnemonicParsing="false" onAction="#AddContract" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Add Contract" textFill="WHITE">
          <cursor>
            
          </cursor>
@@ -60,5 +59,6 @@
           
          </cursor>
       </Button>
+      <TextField fx:id="free" layoutX="38.0" layoutY="362.0" prefHeight="29.0" prefWidth="219.0" promptText="Freelancer" />
     </children>
 </AnchorPane>

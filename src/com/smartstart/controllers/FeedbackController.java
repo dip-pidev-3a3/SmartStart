@@ -6,12 +6,13 @@
 package com.smartstart.controllers;
 
 import com.smartstart.entities.Contract;
-import com.smartstart.entities.Opportunity;
+import com.smartstart.entities.Feedback;
 import com.smartstart.services.ContractServiceImpl;
+import com.smartstart.services.FeedbackServiceImpl;
 import com.smartstart.services.OpportunityService;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -23,7 +24,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -38,54 +38,43 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
- * FXML Controller class
  *
- * @author diabl
+ * @author dytcha
  */
-public class ContractController implements Initializable {
+public class FeedbackController {
 
-    @FXML
-    private TableView<Contract> table;
-    @FXML
-    private TableColumn<Contract, Integer> colid;
-    private ObservableList<Contract> data;
-    @FXML
-    private TableColumn<Contract, String> colPayment;
-    @FXML
-    private TableColumn<Contract, Date> colStart;
-    @FXML
-    private TableColumn<Contract, Date> colFinish;
-    @FXML
-    private TableColumn<Contract, Float> colSum;
-    @FXML
-    private TableColumn<String, String> colApplication;
-    private Button CancelButton;
     @FXML
     private AnchorPane parent;
     @FXML
-    private Label Nombre_Opp;
-    @FXML
     private TextField txtField;
     @FXML
-    private Button Delete;
+    private TableView<Feedback> table;
     @FXML
-    private Button Add;
+    private TableColumn<?,String> id_user;
     @FXML
-    private Button display;
+    private TableColumn<Feedback, Integer> id_rating;
     @FXML
-    private Button Show_My_Draft;
+    private TableColumn<Feedback, String> id_comment;
+    @FXML
+    private TableColumn<?,String> id_app;
+    @FXML
+    private TableColumn<Feedback,Date> id_Added_date;
+    @FXML
+    private Button DeleteFeedback;
+    @FXML
+    private Button Add_Feedback;
+    @FXML
+    private Button displayFeedback;
     @FXML
     private Button reload;
     @FXML
     private Button reload1;
+    
+    private ObservableList<Feedback> data;
+    @FXML
+    private Label Nombre_Feedback;
 
     
-    
-    
-    /**
-     * Initializes the controller class.
-     */
-    @Override
     public void initialize(URL url, ResourceBundle rb) {
         //OpportunityService s = new OpportunityService();
         //int i = s.CountOpportunities(1);
@@ -95,32 +84,31 @@ public class ContractController implements Initializable {
         try {
             reload();
         } catch (SQLException ex) {
-            Logger.getLogger(ContractController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FeedbackController.class.getName()).log(Level.SEVERE, null, ex);
         }
         initFilter();
         // TODO
     }  
     @FXML
     public void reload() throws SQLException {
-        ContractServiceImpl cs = new ContractServiceImpl();
+        FeedbackServiceImpl f = new FeedbackServiceImpl();
 
         //int i = cs.CountContracts(1);
 
         //Nombre_Opp.setText("" + i + "");
 
-        data = cs.listContract(1);
+        data = f.listerFeedback(1);
 
-        colid.setCellValueFactory(new PropertyValueFactory<>("id_contract"));
+        id_user.setCellValueFactory(new PropertyValueFactory<>("id_user"));
         
-        colPayment.setCellValueFactory(new PropertyValueFactory<>("payment_method"));
+        id_rating.setCellValueFactory(new PropertyValueFactory<>("Rating"));
 
-        colStart.setCellValueFactory(new PropertyValueFactory<>("start_date"));
+        id_comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
 
-        colFinish.setCellValueFactory(new PropertyValueFactory<>("finish_date"));
+        id_Added_date.setCellValueFactory(new PropertyValueFactory<>("added_date"));
 
-        colSum.setCellValueFactory(new PropertyValueFactory<>("sum"));
+        id_app.setCellValueFactory(new PropertyValueFactory<>("id_application"));
 
-        colApplication.setCellValueFactory(new PropertyValueFactory<>("id_application"));
 
         System.out.println(data);
 
@@ -145,9 +133,9 @@ public class ContractController implements Initializable {
 
                 }
 
-                ObservableList<Contract> tableItems = FXCollections.observableArrayList();
+                ObservableList<Feedback> tableItems = FXCollections.observableArrayList();
 
-                ObservableList<TableColumn<Contract, ?>> cols = table.getColumns();
+                ObservableList<TableColumn<Feedback, ?>> cols = table.getColumns();
 
                 for (int i = 0; i < data.size(); i++) {
 
@@ -187,25 +175,22 @@ public class ContractController implements Initializable {
         a1.showAndWait();
     }
 
-    private void annuler(ActionEvent event) {
-        Stage stage = (Stage) CancelButton.getScene().getWindow();
-        stage.close();
-    }
+   
     @FXML
-    private void RemoveContract(ActionEvent event) {
+    private void RemoveFeedback(ActionEvent event) {
         if (table.getSelectionModel().getSelectedItem() == null) {
-            alert1("PLEASE SELECT THE CONTRACT THAT YOU WANT TO DELETE");
+            alert1("PLEASE SELECT THE FEEDBACK THAT YOU WANT TO DELETE");
             return;
         } else {
             if (alert1Confirmation() == true) {
                 int idCon = 0;
-                ObservableList<Contract> AllCon = table.getItems();
-                ObservableList<Contract> SingleCon = table.getSelectionModel().getSelectedItems();
+                ObservableList<Feedback> AllCon = table.getItems();
+                ObservableList<Feedback> SingleCon = table.getSelectionModel().getSelectedItems();
                 OpportunityService s = new OpportunityService();
                 table.getSelectionModel().getSelectedItem();
-                System.out.println("Value is in this row which" + table.getSelectionModel().getSelectedItem().getId_contract());
+                System.out.println("Value is in this row which" + table.getSelectionModel().getSelectedItem().getId_feedback());
 
-                s.delete_opporunity(table.getSelectionModel().getSelectedItem().getId_contract());
+                s.delete_opporunity(table.getSelectionModel().getSelectedItem().getId_feedback());
                 SingleCon.forEach(AllCon::remove);
             } else {
                 return;
@@ -215,9 +200,9 @@ public class ContractController implements Initializable {
     }
 
     @FXML
-    private void AddContract(ActionEvent event) {
+    private void AddFeedback(ActionEvent event) {
         try {
-            FXMLLoader detail = new FXMLLoader(getClass().getResource("/com/smartstart/gui/AddContract.fxml"));
+            FXMLLoader detail = new FXMLLoader(getClass().getResource("/com/smartstart/gui/AddFeedbackGui.fxml"));
             Parent root2 = (Parent) detail.load();
             Stage stage1 = new Stage();
             stage1.setScene(new Scene(root2));
@@ -236,12 +221,12 @@ public class ContractController implements Initializable {
             Parent root1 = (Parent) detail.load();
             Stage stage = new Stage();
             
-            DetailsContractController c = detail.getController();
+            DetailFeedbackGuiController f = detail.getController();
 
             System.out.println(table.getSelectionModel().getSelectedItem());
             stage.setScene(new Scene(root1));
             stage.show();
-           c.AfficherDetails(table.getSelectionModel().getSelectedItem());
+           f.AfficherDetails(table.getSelectionModel().getSelectedItem());
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -258,7 +243,7 @@ public class ContractController implements Initializable {
         Alert a1 = new Alert(Alert.AlertType.CONFIRMATION);
         a1.setTitle("CONFIRMATION DIALOG");
         a1.setHeaderText("SUPPRESSION CONFIRMATION");
-        a1.setContentText("ARE YOU SURE THAT YOU WANT TO DELETE THIS Contract?");
+        a1.setContentText("ARE YOU SURE THAT YOU WANT TO DELETE THIS Feedback ?");
         Optional<ButtonType> result = a1.showAndWait();
         if (result.get() == ButtonType.OK) {
             return true;
@@ -269,3 +254,4 @@ public class ContractController implements Initializable {
     }
     
 }
+                

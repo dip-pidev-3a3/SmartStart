@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="SmartStart.jar" size="86885" download="eager" />
+    <jar href="SmartStart.jar" size="185671" download="eager" />
     <jar href="lib\JavaWebSockets.jar" size="17252" download="eager" />
     <jar href="lib\activation.jar" size="56290" download="eager" />
     <jar href="lib\commons-codec-1.10.jar" size="284184" download="eager" />

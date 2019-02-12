@@ -44,23 +44,15 @@ public class Add_OpportunitiesController implements Initializable {
     @FXML
     private Label type;
     @FXML
-    private Button Save_and_exit;
-    @FXML
     private Button Add_Opportunity;
     @FXML
     private Button CancelButton;
-    @FXML
     private TextField job_title;
-    @FXML
     private TextField Job_category;
-    @FXML
     private TextArea job_description;
-    @FXML
     private DatePicker Expiry_Date;
-    @FXML
-    private ComboBox<String> Needed_skills;
-    @FXML
     private TextField Budget;
+    
 
     /**
      * Initializes the controller class.
@@ -120,6 +112,7 @@ public class Add_OpportunitiesController implements Initializable {
         annuler();
         
     }
+    @FXML
     public void SaveOpportunityAndExit()
     {if(job_title.getText().isEmpty())
             {
@@ -153,7 +146,6 @@ public class Add_OpportunitiesController implements Initializable {
         Os.create_Opportunitydraft(O,1);
         annuler();
     }
-     @FXML
     private void alert1(String Message)
     {
         Alert a1=new Alert(Alert.AlertType.ERROR);

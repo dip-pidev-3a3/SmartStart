@@ -24,16 +24,16 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.fxml.FXMLLoader?>
 
-<AnchorPane fx:id="parent" prefHeight="704.0" prefWidth="1115.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Profile_OpportunitiesController">
+<AnchorPane fx:id="parent" prefHeight="663.0" prefWidth="1208.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Profile_OpportunitiesController">
     <children>
         <VBox layoutX="300.0" prefHeight="625.0" prefWidth="813.0">
             <children>
-                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="813.0" style="-fx-background-color: #fff;" VBox.vgrow="ALWAYS">
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="911.0" style="-fx-background-color: #313a4f;" VBox.vgrow="ALWAYS">
                     <effect>
                         <DropShadow blurType="ONE_PASS_BOX" color="#e8e4e4" height="10.0" radius="4.5" width="10.0" />
                     </effect>
                     <children>
-                        <Label layoutX="14.0" layoutY="24.0" text="Display My Jobs" textFill="#7c8184">
+                        <Label layoutX="14.0" layoutY="24.0" text="Display My Jobs" textFill="WHITE">
                             <font>
                                 <Font size="18.0" />
                             </font>
@@ -47,9 +47,10 @@
                   <TextField fx:id="txtField" layoutX="240.0" layoutY="54.0" prefHeight="31.0" prefWidth="335.0" promptText="Search ..." />
                     </children>
                 </Pane>
+            <HBox prefHeight="73.0" prefWidth="911.0" />
                 <HBox alignment="CENTER" prefHeight="557.0" prefWidth="813.0">
                <children>
-                  <TableView fx:id="table" editable="true" prefHeight="518.0" prefWidth="813.0" tableMenuButtonVisible="true">
+                  <TableView fx:id="table" prefHeight="494.0" prefWidth="799.0" stylesheets="@stylesheet.css" tableMenuButtonVisible="true">
                      <columns>
                          <TableColumn fx:id="colid_opportunity" prefWidth="75.0" text="id" />
                         <TableColumn fx:id="coljob_title" prefWidth="75.0" text="Job Title" />
@@ -63,6 +64,12 @@
                      <columnResizePolicy>
                       
                      </columnResizePolicy>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <ColorAdjust />
+                     </effect>
                   </TableView>
                   <VBox prefHeight="525.0" prefWidth="0.0">
                      <children>
@@ -73,9 +80,9 @@
                 </HBox>
             </children>
         </VBox>
-        <VBox alignment="TOP_CENTER" prefHeight="704.0" prefWidth="300.0" styleClass="sidebar">
+        <VBox alignment="TOP_CENTER" layoutY="-1.0" prefHeight="789.0" prefWidth="300.0" styleClass="sidebar">
             <children>
-                <Label alignment="CENTER" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #00A2D3;" text="Smart Start" textFill="WHITE">
+                <Label alignment="CENTER" prefHeight="98.0" prefWidth="300.0" style="-fx-background-color: #00A2D3;" text="Smart Start" textFill="WHITE">
                     <padding>
                         <Insets left="10.0" />
                     </padding>
@@ -83,54 +90,67 @@
                         <Font name="Ebrima" size="18.0" />
                     </font>
                 </Label>
-                <VBox prefHeight="263.0" prefWidth="300.0" styleClass="box" VBox.vgrow="ALWAYS">
+                <HBox alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+                <VBox prefHeight="638.0" prefWidth="300.0" styleClass="box" VBox.vgrow="ALWAYS">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
                     <padding>
                         <Insets left="10.0" top="10.0" />
                     </padding>
+               <children>
+                  <HBox prefHeight="43.0" prefWidth="290.0">
+                     <children>
+                        <Button fx:id="show_applications" mnemonicParsing="false" onAction="#ShowApplications" prefHeight="42.0" prefWidth="278.0" style="-fx-background-color: #313a4f;" text="Display My Jobs" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
                 </VBox>
             </children>
         </VBox>
-      <HBox layoutX="311.0" layoutY="645.0" prefHeight="53.0" prefWidth="791.0">
+      <HBox layoutX="379.0" layoutY="645.0" prefHeight="43.0" prefWidth="708.0">
          <children>
-            <Button fx:id="DeleteOpp" mnemonicParsing="false" onAction="#RemoveOpportunity" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Delete Opportunity" textFill="WHITE">
+            <Button fx:id="DeleteOpp" mnemonicParsing="false" onAction="#RemoveOpportunity" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Delete Opportunity" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
             <HBox prefHeight="52.0" prefWidth="36.0" />
-            <Button fx:id="Add_Opportunity" mnemonicParsing="false" onAction="#Add_an_opportunity" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Add Opportunity" textFill="WHITE">
+            <Button fx:id="Add_Opportunity" mnemonicParsing="false" onAction="#Add_an_opportunity" prefHeight="40.0" prefWidth="149.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Add Opportunity" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
             <HBox prefHeight="52.0" prefWidth="38.0" />
-            <Button fx:id="displayopp" mnemonicParsing="false" onAction="#displayDetails" prefHeight="40.0" prefWidth="127.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Display Details" textFill="WHITE">
+            <Button fx:id="displayopp" mnemonicParsing="false" onAction="#displayDetails" prefHeight="40.0" prefWidth="133.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Display Details" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <HBox prefHeight="52.0" prefWidth="38.0" />
-            <Button fx:id="Show_My_Draft" mnemonicParsing="false" onAction="#Show_Draft" prefHeight="40.0" prefWidth="137.0" style="-fx-background-color: Grey;" stylesheets="@stylesheet.css" text="Show My Drafts" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <HBox prefHeight="53.0" prefWidth="68.0" />
-            <Button fx:id="reload" mnemonicParsing="false" onAction="#ExportToExcel" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Export" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <HBox prefHeight="53.0" prefWidth="68.0" />
-            <Button fx:id="reload1" mnemonicParsing="false" onAction="#reload" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Refresh" textFill="WHITE">
+            <HBox prefHeight="43.0" prefWidth="36.0" />
+            <Button fx:id="Show_My_Draft" mnemonicParsing="false" onAction="#Show_Draft" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: Grey;" stylesheets="@stylesheet.css" text="Show My Drafts" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
          </children>
       </HBox>
+      <Button fx:id="reload" layoutX="776.0" layoutY="710.0" mnemonicParsing="false" onAction="#ExportToExcel" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Export" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="reload1" layoutX="619.0" layoutY="709.0" mnemonicParsing="false" onAction="#reload" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Refresh" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
     </children>
 </AnchorPane>

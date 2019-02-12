@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.fxml.FXMLLoader?>
+
+<AnchorPane fx:id="parent" prefHeight="704.0" prefWidth="1115.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.FeedbackController">
+    <children>
+        <VBox layoutX="300.0" prefHeight="625.0" prefWidth="813.0">
+            <children>
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="813.0" style="-fx-background-color: #fff;" VBox.vgrow="ALWAYS">
+                    <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="#e8e4e4" height="10.0" radius="4.5" width="10.0" />
+                    </effect>
+                    <children>
+                        <Label layoutX="14.0" layoutY="24.0" text="Feedbacks" textFill="#7c8184">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                       
+                        <Label fx:id="Nombre_Feedback" alignment="CENTER" layoutX="106.0" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="28.0" style="-fx-background-color: #00A2D3;" styleClass="round-lbl" text="8" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                  <TextField fx:id="txtField" layoutX="240.0" layoutY="45.0" prefHeight="31.0" prefWidth="335.0" promptText="Search ..." />
+                    </children>
+                </Pane>
+                <HBox alignment="CENTER" prefHeight="557.0" prefWidth="813.0">
+               <children>
+                  <TableView fx:id="table" editable="true" prefHeight="518.0" prefWidth="813.0" tableMenuButtonVisible="true">
+                     <columns>
+                         <TableColumn fx:id="id_user" prefWidth="126.0" text="User" />
+                        <TableColumn fx:id="id_rating" prefWidth="152.0" text="Rating" />
+                        <TableColumn fx:id="id_comment" prefWidth="155.0" text="Comment" />
+                        <TableColumn fx:id="id_app" prefWidth="189.0" text="Application" />
+                        <TableColumn fx:id="id_Added_date" prefWidth="190.0" text="Added Date" />
+                     </columns>
+                     <columnResizePolicy>
+                      
+                     </columnResizePolicy>
+                  </TableView>
+                  <VBox prefHeight="525.0" prefWidth="0.0">
+                     <children>
+                        <VBox prefHeight="160.0" prefWidth="159.0" />
+                     </children>
+                  </VBox>
+               </children>
+                </HBox>
+            </children>
+        </VBox>
+        <VBox alignment="TOP_CENTER" prefHeight="704.0" prefWidth="300.0" styleClass="sidebar">
+            <children>
+                <Label alignment="CENTER" prefHeight="75.0" prefWidth="300.0" style="-fx-background-color: #00A2D3;" text="Smart Start" textFill="WHITE">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="Ebrima" size="18.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER_LEFT">
+                    <children>
+                        
+                        <TextField promptText="Search" style="-fx-background-color: transparent; -fx-text-fill: #fff;" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font name="Calibri Light" size="14.0" />
+                            </font>
+                        </TextField>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
+                    <children>
+                        
+                        <Label text="Dashboard" textFill="#7c8184">
+                            <font>
+                                <Font name="Calibri Light" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                    <cursor>
+                     
+                    </cursor>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
+                    <children>
+                       
+                        <Label text="Projects" textFill="#7c8184">
+                            <font>
+                                <Font name="Calibri Light" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <cursor>
+                        
+                    </cursor>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="132.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
+                    <children>
+                        
+                        <Label text="Users" textFill="#7c8184">
+                            <font>
+                                <Font name="Calibri Light" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <cursor>
+                        
+                    </cursor>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="172.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
+                    <children>
+                        
+                        <Label text="Resource" textFill="#7c8184">
+                            <font>
+                                <Font name="Calibri Light" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <cursor>
+                        
+                    </cursor>
+                </HBox>
+                <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="252.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" styleClass="btns">
+                    <children>
+                       
+                        <Label text="Documents" textFill="#7c8184">
+                            <font>
+                                <Font name="Calibri Light" size="15.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="10.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <cursor>
+                        
+                    </cursor>
+                </HBox>
+                <VBox prefHeight="263.0" prefWidth="300.0" styleClass="box" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </VBox>
+      <HBox layoutX="311.0" layoutY="645.0" prefHeight="53.0" prefWidth="791.0">
+         <children>
+            <Button fx:id="DeleteFeedback" mnemonicParsing="false" onAction="#RemoveOpportunity" prefHeight="40.0" prefWidth="198.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Delete Feedback" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="36.0" />
+            <Button fx:id="Add_Feedback" mnemonicParsing="false" onAction="#Add_an_opportunity" prefHeight="40.0" prefWidth="191.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Add Feedback" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="38.0" />
+            <Button fx:id="displayFeedback" mnemonicParsing="false" onAction="#displayDetails" prefHeight="40.0" prefWidth="172.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Display Details" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="38.0" />
+            <Button fx:id="reload" mnemonicParsing="false" onAction="#ExportToExcel" prefHeight="40.0" prefWidth="177.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Export To PDF" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="53.0" prefWidth="68.0" />
+            <Button fx:id="reload1" mnemonicParsing="false" onAction="#reload" prefHeight="40.0" prefWidth="137.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Refresh" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+    </children>
+</AnchorPane>
