@@ -63,8 +63,6 @@ public class ContractController implements Initializable {
     @FXML
     private AnchorPane parent;
     @FXML
-    private Label Nombre_Opp;
-    @FXML
     private TextField txtField;
     @FXML
     private Button Delete;
@@ -78,6 +76,8 @@ public class ContractController implements Initializable {
     private Button reload;
     @FXML
     private Button reload1;
+    @FXML
+    private Label Nb_cont;
 
     
     
@@ -104,9 +104,9 @@ public class ContractController implements Initializable {
     public void reload() throws SQLException {
         ContractServiceImpl cs = new ContractServiceImpl();
 
-        //int i = cs.CountContracts(1);
+        int i = cs.CountContracts(1);
 
-        //Nombre_Opp.setText("" + i + "");
+        Nb_cont.setText("" + i + "");
 
         data = cs.listContract(1);
 
@@ -198,15 +198,19 @@ public class ContractController implements Initializable {
             return;
         } else {
             if (alert1Confirmation() == true) {
-                int idCon = 0;
-                ObservableList<Contract> AllCon = table.getItems();
-                ObservableList<Contract> SingleCon = table.getSelectionModel().getSelectedItems();
-                OpportunityService s = new OpportunityService();
-                table.getSelectionModel().getSelectedItem();
-                System.out.println("Value is in this row which" + table.getSelectionModel().getSelectedItem().getId_contract());
-
-                s.delete_opporunity(table.getSelectionModel().getSelectedItem().getId_contract());
-                SingleCon.forEach(AllCon::remove);
+                try {
+                    int idCon = 0;
+                    ObservableList<Contract> AllCon = table.getItems();
+                    ObservableList<Contract> SingleCon = table.getSelectionModel().getSelectedItems();
+                    ContractServiceImpl s = new ContractServiceImpl();
+                    table.getSelectionModel().getSelectedItem();
+                    System.out.println("Value is in this row which" + table.getSelectionModel().getSelectedItem().getId_contract());
+                    
+                    s.removeContract(table.getSelectionModel().getSelectedItem().getId_contract());
+                    SingleCon.forEach(AllCon::remove);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ContractController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 return;
             }
