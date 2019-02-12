@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="440.0" prefWidth="548.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.DetailFeedbackGuiController">
+   <children>
+      <Label layoutX="48.0" layoutY="302.0" text="Comment">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="50.0" layoutY="163.0" text="Application">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="51.0" layoutY="120.0" text="User">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label fx:id="id_rating" layoutX="220.0" layoutY="253.0" prefHeight="27.0" prefWidth="49.0" text="Int" />
+      <Label fx:id="id_app" layoutX="220.0" layoutY="162.0" prefHeight="27.0" prefWidth="49.0" text="string" />
+      <Label fx:id="id_user" layoutX="220.0" layoutY="119.0" prefHeight="27.0" prefWidth="49.0" text="string" />
+      <Pane layoutY="-1.0" prefHeight="101.0" prefWidth="548.0" style="-fx-background-color: #00A2D3;">
+         <children>
+            <Label fx:id="type" layoutX="97.0" layoutY="20.0" prefHeight="56.0" prefWidth="383.0" text="Details Of Your Feedback" textFill="#f2e4e4">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Separator layoutX="4.0" layoutY="369.0" prefHeight="7.0" prefWidth="537.0" />
+      <Button fx:id="CancelButton" layoutX="174.0" layoutY="386.0" mnemonicParsing="false" onAction="#annuler" prefHeight="40.0" prefWidth="214.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Cancel" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label fx:id="id_added_date" layoutX="221.0" layoutY="208.0" prefHeight="27.0" prefWidth="49.0" text="Date" />
+      <Label fx:id="id_comment" layoutX="219.0" layoutY="289.0" prefHeight="77.0" prefWidth="242.0" text="String" />
+      <Label layoutX="50.0" layoutY="254.0" text="Rating">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label layoutX="49.0" layoutY="209.0" text="Added date">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
