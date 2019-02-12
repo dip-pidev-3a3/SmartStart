@@ -96,7 +96,7 @@ public class ShowDraftGuiController implements Initializable {
     }    
 
     @FXML
-    private void annuler(ActionEvent event) {
+    private void annuler() {
         
         Stage stage = (Stage) CancelButton.getScene().getWindow();
         stage.close();
@@ -142,6 +142,7 @@ public class ShowDraftGuiController implements Initializable {
              
         OpportunityService Os=new OpportunityService();
         Os.SetDraftTo_Opp(table.getSelectionModel().getSelectedItem());
+        annuler();
          }
         
     }

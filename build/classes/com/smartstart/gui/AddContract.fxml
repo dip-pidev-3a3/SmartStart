@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.fxml.FXMLLoader?>
+
+<AnchorPane fx:id="parent" prefHeight="556.0" prefWidth="713.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Add_OpportunitiesController">
+    <children>
+      <BorderPane prefHeight="364.0" prefWidth="721.0" AnchorPane.bottomAnchor="192.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane prefHeight="272.0" prefWidth="787.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="job_title" layoutX="40.0" layoutY="38.0" promptText="Job Title" />
+                  <TextArea fx:id="job_description" layoutX="34.0" layoutY="182.0" prefHeight="143.0" prefWidth="290.0" promptText="Job Description" />
+                  <DatePicker fx:id="Expiry_Date" layoutX="446.0" layoutY="139.0" promptText="Expiry Date" />
+                  <ComboBox fx:id="Needed_skills" layoutX="465.0" layoutY="38.0" prefWidth="150.0" promptText="Needed Skills" />
+                  <Button fx:id="Save_and_exit" layoutX="481.0" layoutY="393.0" mnemonicParsing="false" onAction="#SaveOpportunityAndExit" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Save And Exit" textFill="WHITE">
+                     <cursor>
+                        
+                     </cursor>
+                  </Button>
+                  <TextField fx:id="Job_category" layoutX="40.0" layoutY="105.0" promptText="Job Category" />
+               </children>
+            </Pane>
+         </center>
+         <top>
+            <Label fx:id="type" alignment="CENTER" prefHeight="92.0" prefWidth="853.0" style="-fx-background-color: #00A2D3;" styleClass="card-01" stylesheets="@stylesheet.css" text="Add An Opportunity" textFill="#f2e4e4" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </top></BorderPane>
+      <Button fx:id="Add_Opportunity" layoutX="276.0" layoutY="485.0" mnemonicParsing="false" onAction="#Add_OpportunityToDb" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Add Opportunity" textFill="WHITE">
+         <cursor>
+           
+         </cursor>
+      </Button>
+      <TextField fx:id="Budget" layoutX="444.0" layoutY="333.0" prefHeight="31.0" prefWidth="219.0" promptText="Budget" />
+      <Separator layoutX="2.0" layoutY="449.0" prefHeight="7.0" prefWidth="713.0" />
+      <Button fx:id="CancelButton" layoutX="66.0" layoutY="485.0" mnemonicParsing="false" onAction="#annuler" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Cancel" textFill="WHITE">
+         <cursor>
+          
+         </cursor>
+      </Button>
+    </children>
+</AnchorPane>

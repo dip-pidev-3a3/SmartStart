@@ -81,41 +81,16 @@ public class ContractController implements Initializable {
 
     
     
-    @FXML
-    public void reload() throws SQLException {
-        ContractServiceImpl cs = new ContractServiceImpl();
-
-        int i = cs.CountContracts(1);
-
-        Nombre_Opp.setText("" + i + "");
-
-        data = cs.listContract(1);
-
-        colid.setCellValueFactory(new PropertyValueFactory<>("id_contract"));
-        colPayment.setCellValueFactory(new PropertyValueFactory<>("payment_method"));
-
-        colStart.setCellValueFactory(new PropertyValueFactory<>("job_category"));
-
-        colFinish.setCellValueFactory(new PropertyValueFactory<>("job_description"));
-
-        colSum.setCellValueFactory(new PropertyValueFactory<>("Budget"));
-
-        colApplication.setCellValueFactory(new PropertyValueFactory<>("job_Duration"));
-
-        System.out.println(data);
-
-        table.setItems(data);
-
-    }
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        OpportunityService s = new OpportunityService();
-        int i = s.CountOpportunities(1);
+        //OpportunityService s = new OpportunityService();
+        //int i = s.CountOpportunities(1);
 
-        Nombre_Opp.setText("" + i + "");
+        //Nombre_Opp.setText("" + i + "");
 
         try {
             reload();
@@ -125,6 +100,33 @@ public class ContractController implements Initializable {
         initFilter();
         // TODO
     }  
+    @FXML
+    public void reload() throws SQLException {
+        ContractServiceImpl cs = new ContractServiceImpl();
+
+        //int i = cs.CountContracts(1);
+
+        //Nombre_Opp.setText("" + i + "");
+
+        data = cs.listContract(1);
+
+        colid.setCellValueFactory(new PropertyValueFactory<>("id_contract"));
+        
+        colPayment.setCellValueFactory(new PropertyValueFactory<>("payment_method"));
+
+        colStart.setCellValueFactory(new PropertyValueFactory<>("start_date"));
+
+        colFinish.setCellValueFactory(new PropertyValueFactory<>("finish_date"));
+
+        colSum.setCellValueFactory(new PropertyValueFactory<>("sum"));
+
+        colApplication.setCellValueFactory(new PropertyValueFactory<>("id_application"));
+
+        System.out.println(data);
+
+        table.setItems(data);
+
+    }
     private void initFilter() {
 
         txtField.setPromptText("Filter");
@@ -189,16 +191,6 @@ public class ContractController implements Initializable {
         Stage stage = (Stage) CancelButton.getScene().getWindow();
         stage.close();
     }
-    public void AfficherDetails(Contract c )
-    { 
-        
-        colStart.setText(c.getStart_date().toString());
-       
-        colFinish.setText(c.getFinish_date().toString());
-        colSum.setText(""+c.getSum());
-         //coljob_category.setText(O.getJob_category());
-    }
-
     @FXML
     private void RemoveContract(ActionEvent event) {
         if (table.getSelectionModel().getSelectedItem() == null) {
@@ -240,20 +232,21 @@ public class ContractController implements Initializable {
     @FXML
     private void displayDetails(ActionEvent event) {
         try {
-            FXMLLoader detail = new FXMLLoader(getClass().getResource("/com/smartstart/gui/DetailOpportunityGui.fxml"));
+            FXMLLoader detail = new FXMLLoader(getClass().getResource("/com/smartstart/gui/DetailsContractGui.fxml"));
             Parent root1 = (Parent) detail.load();
             Stage stage = new Stage();
             
+            DetailsContractController c = detail.getController();
 
             System.out.println(table.getSelectionModel().getSelectedItem());
             stage.setScene(new Scene(root1));
             stage.show();
-           AfficherDetails(table.getSelectionModel().getSelectedItem());
+           c.AfficherDetails(table.getSelectionModel().getSelectedItem());
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }
-
+    
     @FXML
     private void Show_Draft(ActionEvent event) {
     }

@@ -8,6 +8,8 @@ package com.smartstart.controllers;
 import com.smartstart.entities.Opportunity;
 import com.smartstart.services.OpportunityService;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -80,6 +82,8 @@ public class Add_OpportunitiesController implements Initializable {
         if(job_title.getText().isEmpty())
             {
                 alert1("Job Title Is Empty !!");
+                Exception e=new Exception();
+                showExceptionDialog(e);
                 return;
             }
         if(Job_category.getText().isEmpty())
@@ -110,6 +114,8 @@ public class Add_OpportunitiesController implements Initializable {
         
         OpportunityService Os=new OpportunityService();
         Os.create_Opportunity(O, 1);
+        Profile_OpportunitiesController p=new Profile_OpportunitiesController();
+        p.reload();
         Profile_OpportunitiesController P=new Profile_OpportunitiesController();
         annuler();
         
@@ -157,6 +163,45 @@ public class Add_OpportunitiesController implements Initializable {
         a1.showAndWait();
                 
     }
+     public static void showExceptionDialog(Exception e) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+
+    alert.setTitle("Exception Dialog");
+    alert.setHeaderText("An error occurred:");
+
+    String content = "Error: ";
+    if (null != e) {
+        content += e.toString() + "\n\n";
+    }
+
+    alert.setContentText(content);
+
+    Exception ex = new Exception(e);
+
+    //Create expandable Exception.
+    StringWriter sw = new StringWriter();
+    PrintWriter pw = new PrintWriter(sw);
+    ex.printStackTrace(pw);
+
+    String exceptionText = sw.toString();
+
+    //Set up TextArea
+    TextArea textArea = new TextArea(exceptionText);
+    textArea.setEditable(false);
+    textArea.setWrapText(true);
+
+
+    textArea.setPrefHeight(600);
+    textArea.setPrefWidth(800);
+
+
+    //Set expandable Exception into the dialog pane.
+    alert.getDialogPane().setExpandableContent(textArea);
+
+
+    alert.showAndWait();
+}
+   
     
     
 }

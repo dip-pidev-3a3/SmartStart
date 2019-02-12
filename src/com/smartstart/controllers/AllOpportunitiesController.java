@@ -110,13 +110,10 @@ public class AllOpportunitiesController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        OpportunityService s = new OpportunityService();
-        int i = s.CountOpportunities(1);
-
-        Nombre_Opp.setText("" + i + "");
+        
 
         reload();
-        initFilter();
+        //initFilter();
 
     }
 
@@ -182,9 +179,7 @@ public class AllOpportunitiesController implements Initializable {
     public void reload() {
         OpportunityService as = new OpportunityService();
 
-        int i = as.CountOpportunities(1);
-
-        Nombre_Opp.setText("" + i + "");
+       
 
         data = as.Display_Opportunity();
 

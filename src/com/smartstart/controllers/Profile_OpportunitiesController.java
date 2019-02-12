@@ -8,6 +8,7 @@ package com.smartstart.controllers;
 import com.smartstart.entities.Opportunity;
 import com.smartstart.services.OpportunityService;
 import com.sun.rowset.internal.Row;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,6 +16,7 @@ import java.io.IOException;
 
 import java.sql.Date;
 import java.net.URL;
+import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -43,6 +45,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 
 /**
  * FXML Controller class
@@ -93,7 +97,12 @@ public class Profile_OpportunitiesController implements Initializable {
 
     @FXML
     public void displayDetails(ActionEvent event) {
+         if (table.getSelectionModel().getSelectedItem() == null) {
+            alert1("PLEASE SELECT THE OPPORTUNITY THAT YOU WANT TO DISPLAY");
+            return;
+        } else {
         try {
+            
             FXMLLoader detail = new FXMLLoader(getClass().getResource("/com/smartstart/gui/DetailOpportunityGui.fxml"));
             Parent root1 = (Parent) detail.load();
             Stage stage = new Stage();
@@ -107,10 +116,11 @@ public class Profile_OpportunitiesController implements Initializable {
             System.err.println(e.getMessage());
         }
 
-    }
+    }}
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       
         OpportunityService s = new OpportunityService();
         int i = s.CountOpportunities(1);
 
@@ -124,6 +134,7 @@ public class Profile_OpportunitiesController implements Initializable {
     private void initFilter() {
 
         txtField.setPromptText("Filter");
+        
 
         txtField.textProperty().addListener(new InvalidationListener() {
 
@@ -277,6 +288,7 @@ public class Profile_OpportunitiesController implements Initializable {
         System.out.println(data);
 
         table.setItems(data);
+         table.setEditable(true);
 
     }
 
@@ -290,27 +302,71 @@ public class Profile_OpportunitiesController implements Initializable {
     @FXML
     private void ExportToExcel() throws FileNotFoundException, IOException
     {
-        HSSFRow row  =null;
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet spreadsheet = workbook.createSheet("sample");
+        Workbook workbook = new HSSFWorkbook();
+        Sheet spreadsheet = workbook.createSheet("sample");
+
+        org.apache.poi.ss.usermodel.Row row = spreadsheet.createRow(0);
+
+        for (int j = 0; j < table.getColumns().size(); j++) {
+            row.createCell(j).setCellValue(table.getColumns().get(j).getText());
+        }
+
+        for (int i = 0; i < table.getItems().size(); i++) {
+            row = spreadsheet.createRow(i + 1);
+            for (int j = 0; j < table.getColumns().size(); j++) {
+                if(table.getColumns().get(j).getCellData(i) != null) { 
+                    row.createCell(j).setCellValue(table.getColumns().get(j).getCellData(i).toString()); 
+                }
+                else {
+                    row.createCell(j).setCellValue("");
+                }   
+            }
+        }
+
+        FileOutputStream fileOut = new FileOutputStream("workbook.xls");
+        workbook.write(fileOut);
+        fileOut.close();
+
         
 
-        for(int i=0;i<table.getItems().size();i++){
-             row= spreadsheet.createRow(i);          
-             for(int j=0; j< table.getColumns().size();j++) {                
-                 if(table.getColumns().get(j).getCellData(i) != null) {
-                     row.createCell(j).setCellValue(table.getColumns().get(j).getCellData(i).toString());
-                 }else{
-                     row.createCell(j).setCellValue("");
-                 }
-             }
-         }
-        File File = new File("mounir.xlsx");
-        FileOutputStream out = new FileOutputStream(File);
-        workbook.write(out);
-        out.close();
         System.out.println("Data is wrtten Successfully");
     }
+     @FXML
+    public void ShowApplications(ActionEvent event) {
+        try {
+            FXMLLoader detail = new FXMLLoader(getClass().getResource("/com/smartstart/gui/ShowApplicationGui.fxml"));
+            Parent root2 = (Parent) detail.load();
+            Stage stage1 = new Stage();
+            stage1.setScene(new Scene(root2));
+            stage1.show();
+
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }
+    @FXML
+    private void onEditCommitAction(TableColumn.CellEditEvent<Opportunity,String> cellEditEvent) {   
+        //System.out.println(Integer.valueOf("18")); //Au cas où la valeur éditée n'est pas une chaîne
+        Opportunity p = table.getSelectionModel().getSelectedItem();
+        OpportunityService Op=new OpportunityService();
+        String cellColName = cellEditEvent.getTableColumn().getText();
+        System.out.println("You edited a cell: id = " + p.getId_Opp()+ " col = "+ cellEditEvent.getTableColumn().getText());//test affichage colonne
+        p.setJob_title(cellEditEvent.getNewValue());
+        p.setJob_description(cellEditEvent.getNewValue());
+        Op.update_opportunity(p,p.getId_Opp());
+        
+    }
+    @FXML
+    private void clickItem(MouseEvent event)
+    {
+    if (event.getClickCount() == 2) //Checking double click
+    {
+        System.out.println(table.getSelectionModel().getSelectedItem().getId_Opp());
+       
+    }
+}
+
     
 
 }

@@ -21,21 +21,29 @@ import com.smartstart.services.OpportunityService;
 public class ApplicationController {
      public static void main(String[] args) throws ParseException {
          ApplicationService p1=new ApplicationService();
-       p1.Display_Application();
+
+         p1.getApplicationsByEntrepriseId(1);
+//p1.clearSuggestions();
+         //p1.fillSuggestions();
        
-       LocalDate today = LocalDate.now();
-       SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-       java.util.Date utilDate = new java.util.Date();
-       java.sql.Date date = new java.sql.Date(utilDate.getTime());
+      // p1.Display_Application();
+       
+       //LocalDate today = LocalDate.now();
+       //SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+       //java.util.Date utilDate = new java.util.Date();
+       //java.sql.Date date = new java.sql.Date(utilDate.getTime());
 
     
-       Application app=new Application(3,1,"ADDtest");
-       Application app1=new Application();
+       //Application app=new Application(3,1,"ADDtest");
+       //Application app1=new Application();
       
       // p1.create_application(app);
         
-       p1.delete_Application(8);
-      //p1.update_application(1,"Approved");
+       //p1.delete_Application(8);
+      //p1.update_application(1,"Completed");
+      
+
+     
         
     }
     

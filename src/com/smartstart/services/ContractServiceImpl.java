@@ -66,20 +66,21 @@ public class ContractServiceImpl implements ContractServiceInterface {
     public ObservableList<Contract> listContract(int idEntreprise) throws SQLException {
         ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
-                String query = "SELECT * FROM `contract`,'opportunity' WHERE `opportunity.id_entreprise` = "+idEntreprise;
+                String query = "SELECT * FROM `contract`,`application`,`opportunity` WHERE ((contract.id_application = application.id_application) AND (application.id_opportunity = opportunity.id_opp) AND (opportunity.id_entreprise = "+idEntreprise+"))";
 		Statement st  = cn.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 List<Contract> lc = new ArrayList<Contract>();
-                Contract c = null;
+                Contract c = new Contract();
                 while(rs.next()){
                     c.setId_contract(rs.getInt("id_contract"));
-                    c.setPayment_method(rs.getString("id_contract"));
+                    c.setPayment_method(rs.getString("payment_method"));
                     c.setStart_date(rs.getDate("Start_date"));
                     c.setFinish_date(rs.getDate("finish_date"));
                     c.setSum(rs.getFloat("sum"));
                     c.setId_application(rs.getInt("id_application"));
                     lc.add(c);
                 }
+                System.out.println("bij");
                 ObservableList lcf = FXCollections.observableArrayList(lc);
                 return lcf;
                 
