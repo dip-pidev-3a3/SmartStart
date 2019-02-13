@@ -38,6 +38,14 @@ public Application(int opportunityId,int freelancerId,String state) {
        this.state=state;
     }
 
+public Application(int opportunityId,int freelancerId) {
+       
+       this.opportunityId=opportunityId;
+       this.freelancerId=freelancerId;
+       this.state="APPLIED";
+    }
+
+
    
     public int getOpportunityId()
     {return opportunityId;}

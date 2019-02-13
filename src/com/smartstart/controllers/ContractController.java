@@ -87,10 +87,6 @@ public class ContractController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //OpportunityService s = new OpportunityService();
-        //int i = s.CountOpportunities(1);
-
-        //Nombre_Opp.setText("" + i + "");
 
         try {
             reload();
@@ -125,6 +121,7 @@ public class ContractController implements Initializable {
         System.out.println(data);
 
         table.setItems(data);
+        
 
     }
     private void initFilter() {

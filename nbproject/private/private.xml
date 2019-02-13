@@ -3,14 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/util/testconnection.java</file>
+            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/gui/DetailFeedbackGui.fxml</file>
             <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/ContractController.java</file>
             <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/DetailOpportunityGuiController.java</file>
             <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/Add_OpportunitiesController.java</file>
-            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/Profile_OpportunitiesController.java</file>
-            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/DetailsContractController.java</file>
+            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/AllOpportunitiesController.java</file>
             <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/AddContractController.java</file>
+            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/ShowMyApplicationsGuiController.java</file>
+            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/services/ContractServiceInterface.java</file>
+            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/Profile_OpportunitiesController.java</file>
+            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/controllers/DetailFeedbackGuiController.java</file>
             <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/gui/ContractGui.fxml</file>
             <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/gui/AddContract.fxml</file>
+            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/services/ContractServiceImpl.java</file>
+            <file>file:/C:/Users/diabl/Desktop/SmartStart/src/com/smartstart/services/OpportunityService.java</file>
         </group>
     </open-files>
 </project-private>
