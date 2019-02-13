@@ -44,15 +44,23 @@ public class Add_OpportunitiesController implements Initializable {
     @FXML
     private Label type;
     @FXML
+    private Button Save_and_exit;
+    @FXML
     private Button Add_Opportunity;
     @FXML
     private Button CancelButton;
+    @FXML
     private TextField job_title;
+    @FXML
     private TextField Job_category;
+    @FXML
     private TextArea job_description;
+    @FXML
     private DatePicker Expiry_Date;
+    @FXML
+    private ComboBox<String> Needed_skills;
+    @FXML
     private TextField Budget;
-    
 
     /**
      * Initializes the controller class.
@@ -76,6 +84,7 @@ public class Add_OpportunitiesController implements Initializable {
                 alert1("Job Title Is Empty !!");
                 Exception e=new Exception();
                 showExceptionDialog(e);
+              
                 return;
             }
         if(Job_category.getText().isEmpty())
@@ -106,8 +115,6 @@ public class Add_OpportunitiesController implements Initializable {
         
         OpportunityService Os=new OpportunityService();
         Os.create_Opportunity(O, 1);
-        Profile_OpportunitiesController p=new Profile_OpportunitiesController();
-        p.reload();
         Profile_OpportunitiesController P=new Profile_OpportunitiesController();
         annuler();
         

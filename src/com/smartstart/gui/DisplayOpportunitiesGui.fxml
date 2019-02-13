@@ -142,12 +142,17 @@
             </Button>
          </children>
       </HBox>
-      <Button fx:id="reload" layoutX="776.0" layoutY="710.0" mnemonicParsing="false" onAction="#ExportToExcel" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Export" textFill="WHITE">
+      <Button fx:id="reload" layoutX="694.0" layoutY="709.0" mnemonicParsing="false" onAction="#ExportToExcel" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Export" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="reload1" layoutX="619.0" layoutY="709.0" mnemonicParsing="false" onAction="#reload" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Refresh" textFill="WHITE">
+      <Button fx:id="reload1" layoutX="547.0" layoutY="709.0" mnemonicParsing="false" onAction="#reload" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Refresh" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="change" layoutX="859.0" layoutY="709.0" mnemonicParsing="false" onAction="#updateOpportunity" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Change" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

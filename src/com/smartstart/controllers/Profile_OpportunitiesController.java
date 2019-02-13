@@ -43,8 +43,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.converter.DoubleStringConverter;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -177,8 +179,10 @@ public class Profile_OpportunitiesController implements Initializable {
                 }
 
                 table.setItems(tableItems);
+               
 
             }
+            
 
         });
 
@@ -289,6 +293,11 @@ public class Profile_OpportunitiesController implements Initializable {
 
         table.setItems(data);
          table.setEditable(true);
+         coljob_title.setCellFactory(TextFieldTableCell.forTableColumn());
+         coljob_category.setCellFactory(TextFieldTableCell.forTableColumn());
+         coljob_description.setCellFactory(TextFieldTableCell.forTableColumn());
+        
+         
 
     }
 
@@ -366,6 +375,31 @@ public class Profile_OpportunitiesController implements Initializable {
        
     }
 }
+    @FXML
+    public void updateOpportunity(ActionEvent event) {
+         if (table.getSelectionModel().getSelectedItem() == null) {
+            alert1("PLEASE SELECT THE OPPORTUNITY THAT YOU WANT TO DISPLAY");
+            return;
+        } else {
+        try {
+            
+            FXMLLoader detail = new FXMLLoader(getClass().getResource("/com/smartstart/gui/UpdateOpportunityGui.fxml"));
+            Parent root1 = (Parent) detail.load();
+            Stage stage = new Stage();
+            UpdateOpportunityGuiController p = detail.getController();
+
+            System.out.println(table.getSelectionModel().getSelectedItem());
+            stage.setScene(new Scene(root1));
+            stage.show();
+            p.AfficherDetailsUpdate(table.getSelectionModel().getSelectedItem());
+           
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+    }}
+   
+   
 
     
 

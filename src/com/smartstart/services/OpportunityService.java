@@ -303,7 +303,7 @@ java.util.Date utilDate = new java.util.Date();
          PreparedStatement ps=null;
          try
          {
-             String query="Select Count(*) from opportunity where id_entreprise="+id_user;
+             String query="Select Count(*) from opportunity where id_entreprise="+id_user+" AND job_Draft=0";
              ps=connection.prepareStatement(query);
              System.out.println(ps);
             ResultSet rs= ps.executeQuery();
@@ -319,5 +319,6 @@ java.util.Date utilDate = new java.util.Date();
          return toretrun;
          
      }
+  
 
 }
