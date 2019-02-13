@@ -235,6 +235,10 @@ public class ContractController implements Initializable {
 
     @FXML
     private void displayDetails(ActionEvent event) {
+        if (table.getSelectionModel().getSelectedItem() == null) {
+            alert1("PLEASE SELECT THE CONTRACT THAT YOU WANT TO DISPLAY");
+            return;
+        } else {
         try {
             FXMLLoader detail = new FXMLLoader(getClass().getResource("/com/smartstart/gui/DetailsContractGui.fxml"));
             Parent root1 = (Parent) detail.load();
@@ -248,6 +252,7 @@ public class ContractController implements Initializable {
            c.AfficherDetails(table.getSelectionModel().getSelectedItem());
         } catch (Exception e) {
             System.err.println(e.getMessage());
+        }
         }
     }
     

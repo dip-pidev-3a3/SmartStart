@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import java.sql.Date;
 import java.net.URL;
+import java.sql.SQLException;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -34,6 +35,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -89,6 +91,8 @@ public class AllOpportunitiesController implements Initializable {
     private Button reload1;
     @FXML
     private Button apply;
+    @FXML
+    private Button myapplications;
 
     @FXML
     public void displayDetails(ActionEvent event) {
@@ -221,16 +225,19 @@ public class AllOpportunitiesController implements Initializable {
     }
 
     @FXML
-    private void apply(ActionEvent event) {
+    private void apply(ActionEvent event) throws SQLException {
         
         ApplicationService p1=new ApplicationService();
         if (p1.HasApplied(1,table.getSelectionModel().getSelectedItem().getId_Opp())==false)
         {
         if (p1.isApt(1,table.getSelectionModel().getSelectedItem().getId_Opp()))
         {
-        Application app=new Application(table.getSelectionModel().getSelectedItem().getId_Opp(),1,"APPLIED"); 
+        Application app=new Application(table.getSelectionModel().getSelectedItem().getId_Opp(),1); 
         p1.create_application(app);
-          alert1("YOUR APPLICATION HAS BEEN SENT");
+        
+       
+         p1.sendAppliedToUser("marouenedakhlaoui@gmail.com","WEB DEV");
+          alert1("YOUR APPLICATION HAS BEEN SENT CHECK YOUR EMAIL");
         }
         
         else 
@@ -240,6 +247,16 @@ public class AllOpportunitiesController implements Initializable {
     
     
     } else alert1("YOU HAVE ALREADY APPLIED TO THIS OPPORTUNITY");
+    }
+
+    @FXML
+    private void myApplications(ActionEvent event) throws IOException {
+    
+    Parent tableViewOpportunity=FXMLLoader.load(getClass().getResource("/com/smartstart/gui/ShowMyApplicationsGui.fxml"));
+         Scene tableViewOpportunityScene=new Scene (tableViewOpportunity);
+         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+         window.setScene(tableViewOpportunityScene);
+    
     }
   
 

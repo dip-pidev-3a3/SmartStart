@@ -13,16 +13,19 @@ import java.sql.Date;
 import com.smartstart.entities.Opportunity;
 import com.smartstart.services.ApplicationService;
 import com.smartstart.services.OpportunityService;
+import java.sql.SQLException;
 
 /**
  *
  * @author Marr
  */
 public class ApplicationController {
-     public static void main(String[] args) throws ParseException {
+     public static void main(String[] args) throws SQLException  {
          ApplicationService p1=new ApplicationService();
-
-         p1.getApplicationsByEntrepriseId(1);
+         //p1.sendAcceptanceToUser("marouenedakhlaoui@gmail.com","REDUCED INEQUALITIES");
+         p1.sendAppliedToUser("marouenedakhlaoui@gmail.com","WEB DEV");
+//p1.showSuggestedOpps(1);
+        // p1.getApplicationsByEntrepriseId(1);
 //p1.clearSuggestions();
          //p1.fillSuggestions();
        

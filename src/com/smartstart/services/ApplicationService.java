@@ -6,6 +6,7 @@
 package com.smartstart.services;
 
 import com.smartstart.entities.Application;
+import com.smartstart.entities.Message;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -15,9 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 import com.smartstart.entities.Opportunity;
 import com.smartstart.util.ConnectionDb;
+import java.sql.Statement;
+import java.util.Properties;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
@@ -25,8 +31,8 @@ import javafx.collections.ObservableList;
  */
 public class ApplicationService {
 
-
     private ObservableList<Application> ListeApp;
+    private ObservableList<Opportunity> ListeOpp;
 
     public ConnectionDb cnx = ConnectionDb.getInstance();
     Connection connection = cnx.getCnx();
@@ -35,6 +41,7 @@ public class ApplicationService {
     }
     Application app = new Application();
     List<Application> ListApp = new ArrayList<>();
+    
 
     public void Display_Application() {
 
@@ -268,7 +275,7 @@ public class ApplicationService {
                     rs2 = ps2.executeQuery();
                     while (rs2.next()) {
 
-           ListeApp.add(new Application(rs2.getInt(1),rs.getInt(1), rs2.getInt(3), rs2.getString(4)));
+                        ListeApp.add(new Application(rs2.getInt(1), rs.getInt(1), rs2.getInt(3), rs2.getString(4)));
 
                     }
                 } catch (Exception e) {
@@ -284,91 +291,118 @@ public class ApplicationService {
 
     }
 
-}
-
-  /* public ConnectionDb cnx = ConnectionDb.getInstance();
-     Connection connection=cnx.getCnx();
-     public ApplicationService(){}
-     Application app=new Application();
-     List<Application> ListApp=new ArrayList<>();
     
-     public void Display_Application(){     
-        
-       PreparedStatement ps=null;
-	ResultSet rs=null;
-	try {
-		String query="select * from application,opportunity,fos_user where ((application.id_opportunity=opportunity.id_opp) AND (application.id_freelancer=fos_user.id)) ";
-		ps=connection.prepareStatement(query);
-		
-		System.out.println(ps);
-		rs=ps.executeQuery();
-		while(rs.next()){
-                    
-                   
-                    
-                    ListApp.add(new Application(rs.getInt("id_application"),rs.getInt("id_opportunity"),rs.getInt("id_freelancer"),rs.getString("state")));
-                                        
+    
+    public ObservableList<Application> getApplicationsByFreelancerId(int connectedFreelancer) {
 
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        ResultSet rs = null;
+        ResultSet rs2 = null;
+        ListeApp = FXCollections.observableArrayList();
+        try {
+            String query = "select * from application where id_freelancer=" + connectedFreelancer;
+            ps = connection.prepareStatement(query);
+            System.out.println(ps);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                ListeApp.add(new Application(rs.getInt(1), rs.getInt(1), rs.getInt(3), rs.getString(4)));
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        ListeApp.forEach(e -> System.out.println(e));
+        return ListeApp;
+
+    }
+
+   public ObservableList<Opportunity> showSuggestedOpps(int connectedFreelancer) {
+     ApplicationService p1=new ApplicationService();
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        ResultSet rs = null;
+        ResultSet rs2 = null;
+        ListeOpp = FXCollections.observableArrayList();
+        try {
+            String query = "select * from opportunity ";
+            ps = connection.prepareStatement(query);
+            System.out.println(ps);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                if (p1.isApt(connectedFreelancer, rs.getInt(1)))
+
+                ListeOpp.add (new Opportunity(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getInt(6), rs.getString(7), rs.getDate(8), rs.getDate(9), rs.getInt(10)));
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        ListeOpp.forEach(e -> System.out.println(e));
+        return ListeOpp;
+
+    }
+
+    public void sendAcceptanceToUser(String mail,String appName) throws SQLException {
+        
+                String host="smtp.gmail.com";
+		String from="smartstart1941@gmail.com" ;
+		String pwd="azerty1941" ;
+		String to=mail ;
+		Transport t = null;
+		Properties props = System.getProperties();
+		props.put("mail.smtp.host", host);
+		Session session = Session.getDefaultInstance(props, null);
+		MimeMessage msg = new MimeMessage(session);
+		try {
+			msg.setFrom(new InternetAddress(from));
+			msg.addRecipients(javax.mail.Message.RecipientType.TO,to);
+			msg.setSubject("Vous avez reçu un message sur SmartStartApp");
+                      
+			msg.setText("CONGRATS YOU HAVE BEEN ACCEPTED IN AN APPLICATION : "+appName);
+			t = session.getTransport("smtps");
+			t.connect(host,from,pwd);
+			t.sendMessage(msg, msg.getAllRecipients());
+                  
+		}
+		catch (Exception ex ) {ex.printStackTrace();}
 		
 		}
-	} catch (Exception e) {
-		System.out.println(e);
-	}
-        ListApp.forEach(e->System.out.println(e));
-     
-    }
-    public void create_application(Application app){
-	
-	PreparedStatement ps=null;
-	try {
-		String query="INSERT INTO `application`(`id_opportunity`, `id_freelancer`, `state`) VALUES (?,?,?)";
-		ps=connection.prepareStatement(query);
-		ps.setInt(1, app.getOpportunityId());
-		ps.setInt(2, app.getFreelancerId());
-		ps.setString(3, app.getState());
-                
-                
-		System.out.println(ps);
-		ps.executeUpdate();
-	} catch (Exception e) {
-		System.out.println(e);
-	}
-}
- 
-    public void delete_Application(int id){
-	
-	PreparedStatement ps=null;
-	try {
-		String query="delete from application where id_application=?";
-		ps=connection.prepareStatement(query);
-		ps.setInt(1,id);
-		System.out.println(ps);
-		ps.executeUpdate();
-	} catch (Exception e) {
-		System.out.println(e);
-	}
-
-}
-    public void update_application (int id,String newState)
-    {   
-        PreparedStatement ps=null;
-        try
-        { 
-            String query="UPDATE `application` SET `state`=? WHERE id_application="+id;
-            ps=connection.prepareStatement(query);
-		ps.setString(1,newState);
-		System.out.println(ps);
-		ps.executeUpdate();
-            
-        }
-         catch (Exception e) {
-		System.out.println(e);
-	}
+    
+    
+    
+    public void sendAppliedToUser(String mail,String appName) throws SQLException {
         
-    }
-    
-    
-}*/
-    
+                String host="smtp.gmail.com";
+		String from="smartstart1941@gmail.com" ;
+		String pwd="azerty1941" ;
+		String to=mail ;
+		Transport t = null;
+		Properties props = System.getProperties();
+		props.put("mail.smtp.host", host);
+		Session session = Session.getDefaultInstance(props, null);
+		MimeMessage msg = new MimeMessage(session);
+		try {
+			msg.setFrom(new InternetAddress(from));
+			msg.addRecipients(javax.mail.Message.RecipientType.TO,to);
+			msg.setSubject("Vous avez reçu un message sur SmartStartApp");
+                      
+			msg.setText("WE HAVE RECEIVED YOUR APPLICATION IN THE PROJECT ': "+appName+"' AND IT'S NOW IN PROCESS");
+			t = session.getTransport("smtps");
+			t.connect(host,from,pwd);
+			t.sendMessage(msg, msg.getAllRecipients());
+                  
+		}
+		catch (Exception ex ) {ex.printStackTrace();}
+		
+		}
+		
+		
+	}   
+
+
+
+
 
 
