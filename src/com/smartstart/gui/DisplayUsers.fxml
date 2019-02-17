@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="parent" prefHeight="663.0" prefWidth="1208.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Profile_usersController">
+    <children>
+        <VBox layoutX="300.0" prefHeight="625.0" prefWidth="813.0">
+            <children>
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="911.0" style="-fx-background-color: #313a4f;" VBox.vgrow="ALWAYS">
+                    <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="#e8e4e4" height="10.0" radius="4.5" width="10.0" />
+                    </effect>
+                    <children>
+                        <Label layoutX="14.0" layoutY="24.0" text="Users Display" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                       
+                        <Label fx:id="Nombre_users" alignment="CENTER" layoutX="150.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="28.0" style="-fx-background-color: #00A2D3;" styleClass="round-lbl" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                  <TextField fx:id="txtField" layoutX="240.0" layoutY="54.0" prefHeight="31.0" prefWidth="335.0" promptText="Search ..." />
+                    </children>
+                </Pane>
+            <HBox prefHeight="73.0" prefWidth="911.0" />
+                <HBox alignment="CENTER" prefHeight="557.0" prefWidth="813.0">
+               <children>
+                  <TableView fx:id="tableuser" prefHeight="494.0" prefWidth="799.0" stylesheets="@stylesheet.css" tableMenuButtonVisible="true">
+                     <columns>
+                         <TableColumn fx:id="colid_user" prefWidth="75.0" text="id" />
+                        <TableColumn fx:id="colUsername_username" prefWidth="75.0" text="Username" />
+                        <TableColumn fx:id="colName_user1" prefWidth="75.0" text="Name" />
+                        <TableColumn fx:id="colrole_role" prefWidth="78.0" text="role" />
+                        <TableColumn fx:id="colEmail_email" prefWidth="113.0" text="email" />
+                     </columns>
+                     <columnResizePolicy>
+                      
+                     </columnResizePolicy>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <effect>
+                        <ColorAdjust />
+                     </effect>
+                  </TableView>
+                  <VBox prefHeight="525.0" prefWidth="0.0">
+                     <children>
+                        <VBox prefHeight="160.0" prefWidth="159.0" />
+                     </children>
+                  </VBox>
+               </children>
+                </HBox>
+            </children>
+        </VBox>
+        <VBox alignment="TOP_CENTER" layoutY="-1.0" prefHeight="789.0" prefWidth="300.0" styleClass="sidebar">
+            <children>
+                <Label alignment="CENTER" prefHeight="98.0" prefWidth="300.0" style="-fx-background-color: #00A2D3;" text="Smart Start" textFill="WHITE">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="Ebrima" size="18.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+                <VBox prefHeight="638.0" prefWidth="300.0" styleClass="box" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="10.0" top="10.0" />
+                    </padding>
+               <children>
+                  <HBox prefHeight="43.0" prefWidth="290.0">
+                     <children>
+                        <Button fx:id="show_users" mnemonicParsing="false" onAction="#ShowApplications" prefHeight="42.0" prefWidth="278.0" style="-fx-background-color: #313a4f;" text="Display users" textFill="WHITE" />
+                     </children>
+                  </HBox>
+               </children>
+                </VBox>
+            </children>
+        </VBox>
+      <HBox layoutX="398.0" layoutY="645.0" prefHeight="43.0" prefWidth="708.0">
+         <children>
+            <Button fx:id="deleteuser" mnemonicParsing="false" onAction="#delete_user" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Delete User" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="36.0" />
+            <Button fx:id="Add_Opportunity" mnemonicParsing="false" onAction="#Add_an_opportunity" prefHeight="40.0" prefWidth="149.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Add User" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="38.0" />
+            <Button fx:id="displayuser" mnemonicParsing="false" onAction="#displayDetails" prefHeight="40.0" prefWidth="133.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Display User Details" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <HBox prefHeight="43.0" prefWidth="36.0" />
+            <Button fx:id="Show_My_Draft" mnemonicParsing="false" onAction="#Show_Draft" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: Grey;" stylesheets="@stylesheet.css" text="Show My Drafts" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </HBox>
+      <Button fx:id="reload" layoutX="694.0" layoutY="709.0" mnemonicParsing="false" onAction="#ExportToExcel" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Export" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="reload1" layoutX="303.0" layoutY="645.0" mnemonicParsing="false" onAction="#reload" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Refresh" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="change" layoutX="1092.0" layoutY="645.0" mnemonicParsing="false" onAction="#updateOpportunity" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Update" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+    </children>
+</AnchorPane>

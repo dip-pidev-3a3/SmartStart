@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.smartstart.services;
+
+import com.smartstart.entities.Opportunity;
 import com.smartstart.util.ConnectionDb;
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,6 +15,33 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import com.smartstart.entities.fos_user;
+//import com.smartstart.entities.has_skill; //A AJOUTER
+import com.smartstart.services.HasSkillService;
+import java.security.NoSuchAlgorithmException;
+import java.security.Security;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Base64;
+import java.util.Properties;
+import java.util.Random;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import smartstart.FXMLDocumentController;
+import javafx.collections.ObservableListBase;
+import javafx.scene.input.KeyCode;
+import static javafx.scene.input.KeyCode.ALPHANUMERIC;
+//mail lib
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.mail.internet.MimeMessage;
+//encrypt
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+import javax.crypto.*;
 
 
 /**
@@ -22,6 +51,7 @@ import com.smartstart.entities.fos_user;
 public class fos_userService {
     ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
+                    public  ObservableList<fos_user> listusers;
     public void create_user(fos_user u)
     {
         
@@ -63,15 +93,21 @@ public class fos_userService {
         
     }
     
-  public   ArrayList<fos_user>  read_all_users() throws SQLException{
+Date convertToDateViaInstant(LocalDateTime dateToConvert) {
+    return (Date) java.util.Date
+      .from(dateToConvert.atZone(ZoneId.systemDefault())
+      .toInstant());
+}
+    
+  public   ObservableList<fos_user>  read_all_users() throws SQLException{
            
-         ArrayList<fos_user> retour = new ArrayList<>();
+         ObservableList <fos_user> retour = FXCollections.observableArrayList() ;
           Statement stm = cn.createStatement() ;
           String req = "SELECT * FROM fos_user ";
         ResultSet resultat = stm.executeQuery(req);
           
         while(resultat.next()){
-           int id= resultat.getInt(1);
+           int id= resultat.getInt("id"); //kenet (1)
             String username = resultat.getString("username");
            String username_canonical= resultat.getString("username_canonical");
             String email= resultat.getString("email");
@@ -101,6 +137,65 @@ public class fos_userService {
         return retour ;
     }
   
+      public ObservableList<fos_user> DisplayMy_Users(int id_user) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        listusers = FXCollections.observableArrayList();
+        try {
+            String query = "select * from fos_users where id="+id_user+" AND enabled="+0;
+            ps = cn.prepareStatement(query);
+            //ps.setString(1, sl_no);
+            System.out.println(ps);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                /* o.setId(rs.getInt(1));
+                 o.setJob_title(rs.getString(2));
+                    
+                    
+                 o.setJob_category(rs.getString(3));
+                 o.setJob_description(rs.getString(4));
+                 o.setBudget(rs.getFloat(5));
+                 o.setJob_draft(rs.getInt(6));
+                 o.setJob_Duration(rs.getTimestamp(7));
+                 o.setExpiry_date(rs.getDate(8));
+                 o.setAdded_date(rs.getDate(9));
+                 o.setIdEntreprise(rs.getInt(10));
+                 System.out.println("bij");*/
+                listusers.add(new fos_user(rs.getInt(1), rs.getString(2),rs.getString(3), rs.getString(4), rs.getString(5),rs.getInt(6), rs.getString(7), rs.getString(8), rs.getDate(9), rs.getString(10),
+                        rs.getDate(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getDate(15),rs.getString(16),rs.getString(17),
+                        rs.getDate(18),rs.getFloat(19),rs.getFloat(20),rs.getFloat(21),rs.getString(21)));
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return listusers;
+
+    }
+      
+  public int CountUsers () throws SQLException
+     { Statement stmt = null;
+    ResultSet rs = null;
+    int rowCount = -1;
+    try {
+      stmt = cn.createStatement();
+      rs = stmt.executeQuery("SELECT COUNT(*) FROM fos_user " );
+      // get the number of rows from the result set
+      rs.next();
+      rowCount = rs.getInt(1);
+    } finally {
+      rs.close();
+      stmt.close();
+    }
+    return rowCount;
+         
+     }
+  
+  
+  
+  
  public void delete_user(int id){
 	
 	PreparedStatement ps=null;
@@ -115,6 +210,58 @@ public class fos_userService {
 	}
 
 }
+   
+ public void update_Username(int id, String newUsername) {
+        PreparedStatement ps = null;
+        try {
+            String query = "UPDATE fos_user SET `username`=? WHERE id=" + id;
+            ps = cn.prepareStatement(query);
+            ps.setString(1, newUsername);
+            System.out.println(ps);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+ public void update_password(int id, String newpassword) {
+        PreparedStatement ps = null;
+        try {
+            String query = "UPDATE fos_user SET `password`=? WHERE id=" + id;
+            ps = cn.prepareStatement(query);
+            ps.setString(1, newpassword);
+            System.out.println(ps);
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+ public void Ajouter_skills(int idfreelancer, int idskill)
+ { HasSkillService p1=new HasSkillService();
+       p1.addHasSkill(idfreelancer,idskill);
+ }
+ public boolean Authentification (String username, String password) throws SQLException
+ {
+     
+             Statement statement = cn.createStatement();
+                      String sql ="SELECT * FROM `fos_user` WHERE username = '"+username+"' and password = '"+password+"'";
+                      System.out.println(sql);
+                   //   ps=cn.prepareStatement(sql);
+                      ResultSet rs = statement.executeQuery(sql);
+                      // console requete System.out.println(rs);
+                      if (rs.next())
+                      {
+                          System.out.println("User trouvé ");
+                          return true ;
+                      }
+                    else  System.out.println("User introuveable");
+                      return false ;
+                     //isconnected.setText("LAAAAAAA");
+                  
+ }
+
+ 
   public fos_user get_user_by_id(int searched ) throws SQLException
   {//zid thabet
       PreparedStatement ps=null;
@@ -157,7 +304,90 @@ public class fos_userService {
        return newus;
       
   }
+
+    public ObservableList<fos_user> Display_users() {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        listusers = FXCollections.observableArrayList();
+        try {
+            String query = "select * from fos_users";
+            ps = cn.prepareStatement(query);
+            //ps.setString(1, sl_no);
+            System.out.println(ps);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                listusers.add(new fos_user());
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        listusers.forEach(e -> System.out.println(e));
+        return listusers;
+
+    }
+    
+   public void sendmail(String to,String verifcode)
+    {  
+        try{
+            String host ="smtp.gmail.com" ;
+            String user = "smartstart1941@gmail.com";
+            String pass = "azerty1941";
+            
+            String from = "smartstart1941@gmail.com";
+            String subject = "Welcome to smartstart";
+            String messageText = "Your confirmation code is"+verifcode;
+            boolean sessionDebug = false;
+
+            Properties props = System.getProperties();
+
+            props.put("mail.smtp.starttls.enable", "true");
+            props.put("mail.smtp.host",host);
+         //option   props.put("mail.smtp.user", user);
+            props.put("mail.smtp.port", "587");
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.starttls.required", "true");
+            
+            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            Session mailSession = Session.getDefaultInstance(props, null);
+            mailSession.setDebug(sessionDebug);
+            Message msg = new MimeMessage(mailSession);
+            msg.setFrom(new InternetAddress(from));
+           
+            InternetAddress[] address = {new InternetAddress(to)};
+           
+            msg.setRecipients(Message.RecipientType.TO, address);
+            msg.setSubject(subject); msg.setSentDate(new java.util.Date());
+            msg.setText(messageText);
+
+           Transport transport=mailSession.getTransport("smtp"); //serveur
+           transport.connect(host, user, pass);
+           transport.sendMessage(msg, msg.getAllRecipients());
+           transport.close();
+           System.out.println("message send successfully");
+        }catch(Exception ex)
+        {
+            System.out.println(ex);
+        }
+
+    }
+   public String random_code(int length)
+   {
+        String LETTERS ="abcdefghijklmnopqrstuvwxyz" ;
+        char[] ALPHANUMERIC =(LETTERS + LETTERS.toUpperCase()+"1234567890").toCharArray();
+       StringBuilder result = new StringBuilder();
+       for (int i=0; i <10 ;i++)
+       {
+           result.append(ALPHANUMERIC[new Random().nextInt(ALPHANUMERIC.length)]);
+       }
+       return result.toString();
+   }
+ 
+   
+        
+    }
     
     
-    
-}
+
+

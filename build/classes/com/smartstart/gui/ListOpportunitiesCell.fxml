@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="gridPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="198.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="titles" layoutX="19.0" layoutY="10.0" prefHeight="58.0" prefWidth="234.0" text="Job Title" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="531.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold Italic" size="29.0" />
+         </font></Label>
+      <Label fx:id="category" layoutX="223.0" layoutY="28.0" text="Job Category" />
+      <Label fx:id="description" layoutX="73.0" layoutY="115.0" prefHeight="76.0" prefWidth="234.0" text="Job Description" />
+      <Label fx:id="Expiry" layoutX="557.0" layoutY="41.0" text="Expiry Date" />
+      <Separator layoutX="389.0" layoutY="12.0" orientation="VERTICAL" prefHeight="154.0" prefWidth="6.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="389.0" AnchorPane.rightAnchor="389.0" AnchorPane.topAnchor="12.0" />
+      <Label fx:id="Expiry1" layoutX="558.0" layoutY="121.0" text="Added Date" />
+      <Label fx:id="description1" layoutX="66.0" layoutY="79.0" text="Fixed Price :" />
+      <Label fx:id="budget" layoutX="175.0" layoutY="79.0" text="Budget" />
+      <Label layoutX="460.0" layoutY="41.0" text="Expiry Date" />
+      <Label layoutX="460.0" layoutY="121.0" text="Added Date" />
+   </children>
+</AnchorPane>

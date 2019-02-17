@@ -58,6 +58,15 @@ public class Opportunity {
         this.id_entreprise = id_entreprise;
         this.job_Draft = job_draft;
     }
+    public Opportunity (String job_title,String job_category,String description,Date fin,Float Bu)
+    {
+        this.job_title=job_title;
+        this.job_category=job_category;
+        this.job_description=description;
+        this.Expiry_Date=fin;
+        this.budget=Bu;
+    }
+
 
     public int getId_Opp() {
         return id_opp.get();

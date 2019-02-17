@@ -39,6 +39,8 @@
                      </cursor>
                   </Button>
                   <TextField fx:id="Job_category" layoutX="40.0" layoutY="105.0" promptText="Job Category" />
+                  <Separator layoutX="370.0" layoutY="30.0" orientation="VERTICAL" prefHeight="293.0" prefWidth="3.0" />
+                  <Separator layoutX="373.0" layoutY="28.0" orientation="VERTICAL" prefHeight="297.0" prefWidth="5.0" style="-fx-background-color: #00A2D3;" />
                </children>
             </Pane>
          </center>
@@ -54,7 +56,7 @@
            
          </cursor>
       </Button>
-      <TextField fx:id="Budget" layoutX="444.0" layoutY="333.0" prefHeight="31.0" prefWidth="219.0" promptText="Budget" />
+      <TextField fx:id="Budget" layoutX="448.0" layoutY="333.0" prefHeight="31.0" prefWidth="219.0" promptText="Budget" />
       <Separator layoutX="2.0" layoutY="449.0" prefHeight="7.0" prefWidth="713.0" />
       <Button fx:id="CancelButton" layoutX="66.0" layoutY="485.0" mnemonicParsing="false" onAction="#annuler" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Cancel" textFill="WHITE">
          <cursor>

@@ -7,6 +7,8 @@ package com.smartstart.controllers;
 
 import com.smartstart.entities.Opportunity;
 import com.smartstart.services.OpportunityService;
+import com.sun.deploy.uitoolkit.ToolkitStore;
+import static com.sun.deploy.uitoolkit.ToolkitStore.setToolkitType;
 import com.sun.rowset.internal.Row;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -33,6 +35,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -42,6 +45,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.AnchorPane;
@@ -96,6 +100,7 @@ public class Profile_OpportunitiesController implements Initializable {
     private Button reload;
     @FXML
     private Label Nombre_Opp;
+    final Tooltip tooltip=new Tooltip();
 
     @FXML
     public void displayDetails(ActionEvent event) {
@@ -124,13 +129,13 @@ public class Profile_OpportunitiesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        
         OpportunityService s = new OpportunityService();
-        int i = s.CountOpportunities(1);
+        int i = s.CountOpportunities(2);
 
         Nombre_Opp.setText("" + i + "");
 
         reload();
         initFilter();
-
+        
     }
 
     private void initFilter() {
@@ -264,9 +269,10 @@ public class Profile_OpportunitiesController implements Initializable {
 
         Nombre_Opp.setText("" + i + "");
 
-        data = as.DisplayMy_Opportunities(1);
+        data = as.DisplayMy_Opportunities(2);
 
         colid_opportunity.setCellValueFactory(new PropertyValueFactory<>("id_Opp"));
+        colid_opportunity.setVisible(false);
         coljob_title.setCellValueFactory(new PropertyValueFactory<>("job_title"));
 
         coljob_category.setCellValueFactory(new PropertyValueFactory<>("job_category"));
@@ -293,9 +299,9 @@ public class Profile_OpportunitiesController implements Initializable {
 
         table.setItems(data);
          table.setEditable(true);
-         coljob_title.setCellFactory(TextFieldTableCell.forTableColumn());
-         coljob_category.setCellFactory(TextFieldTableCell.forTableColumn());
-         coljob_description.setCellFactory(TextFieldTableCell.forTableColumn());
+    
+        tooltip.setText("Bijor");
+        table.setTooltip(tooltip);
         
          
 
@@ -398,6 +404,15 @@ public class Profile_OpportunitiesController implements Initializable {
         }
 
     }}
+      @FXML
+    public void ShowHome(ActionEvent event) throws IOException {
+        Parent tableViewOpportunity=FXMLLoader.load(getClass().getResource("/com/smartstart/gui/AcceuilOpportunities.fxml"));
+         Scene tableViewOpportunityScene=new Scene (tableViewOpportunity);
+         Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
+         window.setScene(tableViewOpportunityScene);
+        
+    }
+    
    
    
 
