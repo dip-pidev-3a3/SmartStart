@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.fxml.FXMLLoader?>
+
+<AnchorPane fx:id="parent" prefHeight="663.0" prefWidth="1208.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.Profile_OpportunitiesController">
+    <children>
+        <VBox layoutX="300.0" prefHeight="625.0" prefWidth="813.0">
+            <children>
+                <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="911.0" style="-fx-background-color: #313a4f;" VBox.vgrow="ALWAYS">
+                    <effect>
+                        <DropShadow blurType="ONE_PASS_BOX" color="#e8e4e4" height="10.0" radius="4.5" width="10.0" />
+                    </effect>
+                    <children>
+                        <Label layoutX="14.0" layoutY="24.0" text="Display My Jobs" textFill="WHITE">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                       
+                        <Label fx:id="Nombre_Opp" alignment="CENTER" layoutX="150.0" layoutY="26.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="28.0" style="-fx-background-color: #00A2D3;" styleClass="round-lbl" text="8" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                  <TextField fx:id="txtField" layoutX="240.0" layoutY="54.0" prefHeight="31.0" prefWidth="335.0" promptText="Search ..." />
+                    </children>
+                </Pane>
+            <HBox prefHeight="73.0" prefWidth="911.0" />
+                <HBox alignment="CENTER" prefHeight="557.0" prefWidth="813.0">
+               <children>
+                  <TableView fx:id="table" prefHeight="494.0" prefWidth="799.0" stylesheets="@stylesheet.css" tableMenuButtonVisible="true">
+                     <columns>
+                         <TableColumn fx:id="colid_opportunity" prefWidth="75.0" text="id" />
+                        <TableColumn fx:id="coljob_title" prefWidth="75.0" text="Job Title" />
+                        <TableColumn fx:id="coljob_category" prefWidth="113.0" text="Job Category" />
+                        <TableColumn fx:id="coljob_description" prefWidth="190.0" text="Job Description" />
+                        <TableColumn fx:id="colbudget" prefWidth="71.0" text="Budget" />
+                        <TableColumn fx:id="colDuration" prefWidth="76.0" text="Duration" />
+                        <TableColumn fx:id="colExpiry_Date" prefWidth="101.0" text="Expiry Date" />
+                        <TableColumn fx:id="colAdded_date" prefWidth="94.0" text="Added Date" />
+                     </columns>
+                     <columnResizePolicy>
+                      
+                     </columnResizePolicy>
+                   
+                     <effect>
+                        <ColorAdjust />
+                     </effect>
+                  </TableView>
+                  <VBox prefHeight="525.0" prefWidth="0.0">
+                     <children>
+                        <VBox prefHeight="160.0" prefWidth="159.0" />
+                     </children>
+                  </VBox>
+               </children>
+                </HBox>
+            </children>
+        </VBox>
+        <VBox alignment="TOP_CENTER" layoutY="-1.0" prefHeight="789.0" prefWidth="300.0" styleClass="sidebar">
+            <children>
+                <Label alignment="CENTER" prefHeight="98.0" prefWidth="300.0" style="-fx-background-color: #00A2D3;" text="Smart Start" textFill="WHITE">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <font>
+                        <Font name="Ebrima" size="18.0" />
+                    </font>
+                </Label>
+                <HBox alignment="CENTER_LEFT">
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+                <VBox prefHeight="638.0" prefWidth="300.0" styleClass="box" VBox.vgrow="ALWAYS">
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets left="10.0" top="10.0" />
+                    </padding>
+               <children>
+                  <HBox prefHeight="43.0" prefWidth="290.0">
+                     <children>
+                        <Button fx:id="show_applications" mnemonicParsing="false" onAction="#ShowApplications" prefHeight="42.0" prefWidth="278.0" style="-fx-background-color: #313a4f;" text="Display Applications" textFill="WHITE" />
+                                                <Button fx:id="Home" mnemonicParsing="false" onAction="#ShowHome" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #313a4f;" text="Home" textFill="WHITE" />
+
+                     </children>
+                  </HBox>
+               </children>
+                </VBox>
+            </children>
+        </VBox>
+      <HBox layoutX="379.0" layoutY="645.0" prefHeight="43.0" prefWidth="708.0">
+         <children>
+            <Button fx:id="DeleteOpp" mnemonicParsing="false" onAction="#RemoveOpportunity" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Delete Opportunity" textFill="WHITE">
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="36.0" />
+            <Button fx:id="Add_Opportunity" mnemonicParsing="false" onAction="#Add_an_opportunity" prefHeight="40.0" prefWidth="149.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Add Opportunity" textFill="WHITE">
+               
+            </Button>
+            <HBox prefHeight="52.0" prefWidth="38.0" />
+            <Button fx:id="displayopp" mnemonicParsing="false" onAction="#displayDetails" prefHeight="40.0" prefWidth="133.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Display Details" textFill="WHITE">
+               
+            </Button>
+            <HBox prefHeight="43.0" prefWidth="36.0" />
+            <Button fx:id="Show_My_Draft" mnemonicParsing="false" onAction="#Show_Draft" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: Grey;" stylesheets="@stylesheet.css" text="Show My Drafts" textFill="WHITE">
+            </Button>
+         </children>
+      </HBox>
+      <Button fx:id="reload" layoutX="694.0" layoutY="709.0" mnemonicParsing="false" onAction="#ExportToExcel" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Export" textFill="WHITE">
+        
+      </Button>
+      <Button fx:id="reload1" layoutX="547.0" layoutY="709.0" mnemonicParsing="false" onAction="#reload" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Refresh" textFill="WHITE">
+         
+      </Button>
+      <Button fx:id="change" layoutX="859.0" layoutY="709.0" mnemonicParsing="false" onAction="#updateOpportunity" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Change" textFill="WHITE">
+        
+      </Button>
+    </children>
+</AnchorPane>

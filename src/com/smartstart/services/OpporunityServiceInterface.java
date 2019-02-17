@@ -32,6 +32,9 @@ public interface OpporunityServiceInterface {
     ObservableList<Opportunity> DisplayMy_OpportunitiesDrafts(int id_user);
 
     public void SetDraftTo_Opp(Opportunity o);
+          public ObservableList<Opportunity> getOpportunitiesFromApplications(int id_opp);
+            public Opportunity getOpportunityById(int id_opp);
+
     
 
 }

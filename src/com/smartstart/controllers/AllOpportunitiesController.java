@@ -7,6 +7,7 @@ package com.smartstart.controllers;
 
 import com.smartstart.entities.Application;
 import com.smartstart.entities.Opportunity;
+import com.smartstart.entities.fos_user;
 import com.smartstart.services.ApplicationService;
 import com.smartstart.services.OpportunityService;
 import com.sun.rowset.internal.Row;
@@ -55,6 +56,8 @@ import javafx.stage.Stage;
  * @author acmou
  */
 public class AllOpportunitiesController implements Initializable {
+    Date d=new Date(0);
+    fos_user f=new fos_user(1, "username", "username_canonical", "email", "email_canonical", 0, "salt", "password", d, "confirmation_token", d, "roles", "name", "last_name", d, "bio", "location", d, 0, 0, 0, "field_company");
 
     /**
      * Initializes the controller class.
@@ -231,8 +234,8 @@ public class AllOpportunitiesController implements Initializable {
         if (p1.HasApplied(1,table.getSelectionModel().getSelectedItem().getId_Opp())==false)
         {
         if (p1.isApt(1,table.getSelectionModel().getSelectedItem().getId_Opp()))
-        {
-        Application app=new Application(table.getSelectionModel().getSelectedItem().getId_Opp(),1); 
+        { 
+        Application app=new Application(table.getSelectionModel().getSelectedItem(),f); 
         p1.create_application(app);
         
        
@@ -252,7 +255,7 @@ public class AllOpportunitiesController implements Initializable {
     @FXML
     private void myApplications(ActionEvent event) throws IOException {
     
-    Parent tableViewOpportunity=FXMLLoader.load(getClass().getResource("/com/smartstart/gui/ShowMyApplicationsGui.fxml"));
+         Parent tableViewOpportunity=FXMLLoader.load(getClass().getResource("/com/smartstart/gui/ShowMyApplicationsGui.fxml"));
          Scene tableViewOpportunityScene=new Scene (tableViewOpportunity);
          Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
          window.setScene(tableViewOpportunityScene);

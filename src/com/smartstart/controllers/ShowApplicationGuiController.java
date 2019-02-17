@@ -10,6 +10,7 @@ import com.smartstart.entities.Opportunity;
 import com.smartstart.services.ApplicationService;
 import com.smartstart.services.OpportunityService;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -42,12 +43,14 @@ public class ShowApplicationGuiController implements Initializable {
     private TableColumn<Application, String> coljob_freelancer;
     @FXML
     private TableColumn<Application, String> colState;
-    @FXML
-    private Button Delete;
-    @FXML
-    private Button Add;
     private ObservableList<Application> data;
-     private ObservableList<Application> data2;
+     private ObservableList<Opportunity> data2;
+    @FXML
+    private Button DenyApp;
+    @FXML
+    private Button Accept;
+    @FXML
+    private TableColumn<Opportunity, String> Title;
     
 
     /**
@@ -74,31 +77,38 @@ public class ShowApplicationGuiController implements Initializable {
     }
 
     @FXML
-    private void AcceptOpp(ActionEvent event) {
+    private void AcceptOpp(ActionEvent event) throws SQLException {
         Application O=table.getSelectionModel().getSelectedItem();
        ApplicationService as = new ApplicationService();
         as.update_application(O.getId(),"ACCEPTED");
+        ApplicationService p1=new ApplicationService();
+        p1.sendAcceptanceToUser("mounirachir96@gmail.com",O.getState());
         reload();
     }
-     @FXML
     public void reload() {
         ApplicationService as = new ApplicationService();
         OpportunityService os=new OpportunityService();
+       
         data = as.getApplicationsByEntrepriseId(1);
+        
         
 
         colapplication.setCellValueFactory(new PropertyValueFactory<>("id"));
         id_opp.setCellValueFactory(new PropertyValueFactory<>("opportunityId"));
+       // int i=Integer.valueOf(id_opp.getText());
+       // data2=os.getOpportunitiesFromApplications(i);
 
         coljob_freelancer.setCellValueFactory(new PropertyValueFactory<>("freelancerId"));
 
         colState.setCellValueFactory(new PropertyValueFactory<>("state"));
+        //Title.setCellValueFactory(new PropertyValueFactory<>("job_title"));
 
         
 
         System.out.println(data);
 
         table.setItems(data);
+       
          table.setEditable(true);
 
     }

@@ -64,9 +64,7 @@
                      <columnResizePolicy>
                       
                      </columnResizePolicy>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
+                   
                      <effect>
                         <ColorAdjust />
                      </effect>
@@ -106,9 +104,11 @@
                         <Insets left="10.0" top="10.0" />
                     </padding>
                <children>
+                                          <Button fx:id="Home" mnemonicParsing="false" onAction="#ShowHome" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #313a4f;" text="Home" textFill="WHITE" />
                   <HBox prefHeight="43.0" prefWidth="290.0">
                      <children>
-                        <Button fx:id="show_applications" mnemonicParsing="false" onAction="#ShowApplications" prefHeight="42.0" prefWidth="278.0" style="-fx-background-color: #313a4f;" text="Display My Jobs" textFill="WHITE" />
+                        <Button fx:id="show_applications" mnemonicParsing="false" onAction="#ShowApplications" prefHeight="42.0" prefWidth="278.0" style="-fx-background-color: #313a4f;" text="Display Applications" textFill="WHITE" />
+
                      </children>
                   </HBox>
                </children>
@@ -118,44 +118,28 @@
       <HBox layoutX="379.0" layoutY="645.0" prefHeight="43.0" prefWidth="708.0">
          <children>
             <Button fx:id="DeleteOpp" mnemonicParsing="false" onAction="#RemoveOpportunity" prefHeight="40.0" prefWidth="154.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Delete Opportunity" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
             <HBox prefHeight="52.0" prefWidth="36.0" />
             <Button fx:id="Add_Opportunity" mnemonicParsing="false" onAction="#Add_an_opportunity" prefHeight="40.0" prefWidth="149.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Add Opportunity" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+               
             </Button>
             <HBox prefHeight="52.0" prefWidth="38.0" />
             <Button fx:id="displayopp" mnemonicParsing="false" onAction="#displayDetails" prefHeight="40.0" prefWidth="133.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Display Details" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+               
             </Button>
             <HBox prefHeight="43.0" prefWidth="36.0" />
             <Button fx:id="Show_My_Draft" mnemonicParsing="false" onAction="#Show_Draft" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: Grey;" stylesheets="@stylesheet.css" text="Show My Drafts" textFill="WHITE">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
             </Button>
          </children>
       </HBox>
       <Button fx:id="reload" layoutX="694.0" layoutY="709.0" mnemonicParsing="false" onAction="#ExportToExcel" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Export" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+        
       </Button>
       <Button fx:id="reload1" layoutX="547.0" layoutY="709.0" mnemonicParsing="false" onAction="#reload" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Refresh" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+         
       </Button>
       <Button fx:id="change" layoutX="859.0" layoutY="709.0" mnemonicParsing="false" onAction="#updateOpportunity" prefHeight="40.0" prefWidth="92.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Change" textFill="WHITE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+        
       </Button>
     </children>
 </AnchorPane>

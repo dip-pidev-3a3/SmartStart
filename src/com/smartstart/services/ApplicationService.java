@@ -5,6 +5,7 @@
  */
 package com.smartstart.services;
 
+import com.smartstart.controllers.OpportunityController;
 import com.smartstart.entities.Application;
 import com.smartstart.entities.Message;
 import java.sql.Connection;
@@ -41,10 +42,11 @@ public class ApplicationService {
     }
     Application app = new Application();
     List<Application> ListApp = new ArrayList<>();
-    
+     OpportunityService p=new OpportunityService();
+        fos_userService p1=new fos_userService();
 
     public void Display_Application() {
-
+       
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
@@ -55,7 +57,7 @@ public class ApplicationService {
             rs = ps.executeQuery();
             while (rs.next()) {
 
-                ListApp.add(new Application(rs.getInt("id_application"), rs.getInt("id_opportunity"), rs.getInt("id_freelancer"), rs.getString("state")));
+                ListApp.add(new Application(rs.getInt("id_application"), p.getOpportunityById(rs.getInt("id_opportunity")), p1.get_user_by_id(rs.getInt("id_freelancer")), rs.getString("state")));
 
             }
         } catch (Exception e) {
@@ -76,7 +78,7 @@ public class ApplicationService {
             System.out.println(ps);
             rs = ps.executeQuery();
             if (rs.next()) {
-                Application app = new Application(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4));
+                Application app = new Application(rs.getInt(1), p.getOpportunityById(rs.getInt(2)), p1.get_user_by_id(rs.getInt(3)), rs.getString(4));
 
             }
         } catch (Exception e) {
@@ -91,8 +93,8 @@ public class ApplicationService {
         try {
             String query = "INSERT INTO `application`(`id_opportunity`, `id_freelancer`, `state`) VALUES (?,?,?)";
             ps = connection.prepareStatement(query);
-            ps.setInt(1, app.getOpportunityId());
-            ps.setInt(2, app.getFreelancerId());
+            ps.setInt(1, app.getOpportunity().getId_Opp());
+            ps.setInt(2, app.getFreelancer().getId());
             ps.setString(3, app.getState());
 
             System.out.println(ps);
@@ -199,6 +201,9 @@ public class ApplicationService {
     }
 
     public boolean isApt(int freelancerId, int oppId) {
+        ApplicationService p1=new ApplicationService();
+        p1.clearSuggestions();
+        p1.fillSuggestions();
         int test = 0;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -275,7 +280,7 @@ public class ApplicationService {
                     rs2 = ps2.executeQuery();
                     while (rs2.next()) {
 
-                        ListeApp.add(new Application(rs2.getInt(1), rs.getInt(1), rs2.getInt(3), rs2.getString(4)));
+                        ListeApp.add(new Application(rs2.getInt(1), p.getOpportunityById(rs.getInt(1)), p1.get_user_by_id(rs2.getInt(3)), rs2.getString(4)));
 
                     }
                 } catch (Exception e) {
@@ -307,7 +312,7 @@ public class ApplicationService {
             rs = ps.executeQuery();
             while (rs.next()) {
 
-                ListeApp.add(new Application(rs.getInt(1), rs.getInt(1), rs.getInt(3), rs.getString(4)));
+                ListeApp.add(new Application(rs.getInt(1), p.getOpportunityById(rs.getInt(1)), p1.get_user_by_id(rs.getInt(3)), rs.getString(4)));
 
             }
         } catch (Exception e) {

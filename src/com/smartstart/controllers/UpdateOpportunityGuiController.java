@@ -32,8 +32,6 @@ public class UpdateOpportunityGuiController implements Initializable {
     @FXML
     private Button CancelButton;
     @FXML
-    private Button Apply;
-    @FXML
     private TextField category;
     @FXML
     private TextField title;
@@ -43,9 +41,10 @@ public class UpdateOpportunityGuiController implements Initializable {
     private DatePicker fin;
     @FXML
     private TextField budget;
-     private Opportunity O;
     @FXML
     private TextField id;
+    @FXML
+    private Button update;
 
     /**
      * Initializes the controller class.
@@ -73,27 +72,21 @@ public class UpdateOpportunityGuiController implements Initializable {
         budget.setText(""+O.getBudget());
          description.setText(O.getJob_description());
          category.setText(O.getJob_category());
-         OpportunityService S=new OpportunityService();
-        
-         O.setJob_title(title.getText());
-          O.setJob_description(title.getText());
-          O.setExpiry_date(java.sql.Date.valueOf(fin.getValue()));
-          O.setJob_category(category.getText());
-          O.setBudget(Float.parseFloat(budget.getText()));
-          S.update_opportunity(O, O.getId_Opp());
-          annuler();
+         
          
     }
 
     @FXML
-    private void AfficherDetailsUpdate(ActionEvent event) {
-    }
-     @FXML
     private void Update(ActionEvent event) {
+        System.out.println("bij");
        
-        System.out.println(O);
+        Opportunity O1=new Opportunity(title.getText(),category.getText(),description.getText(),java.sql.Date.valueOf(fin.getValue()),Float.parseFloat(budget.getText()));
+        System.out.println(O1);
+        System.out.println("bij");
         OpportunityService S=new OpportunityService();
-         S.update_opportunity(O, O.getId_Opp());
+        System.out.println("bij");
+         S.update_opportunity(O1,Integer.valueOf(id.getText()));
+    System.out.println("bij");
           annuler();
     }
     

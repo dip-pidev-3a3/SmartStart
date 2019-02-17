@@ -35,6 +35,7 @@
                   <TableColumn fx:id="id_opp" prefWidth="110.0" text="Opportunity" />
                   <TableColumn fx:id="coljob_freelancer" prefWidth="190.0" text="Freelancer" />
                   <TableColumn fx:id="colState" prefWidth="76.0" text="State" />
+                  <TableColumn fx:id="Title" prefWidth="103.0" text="Job Title" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

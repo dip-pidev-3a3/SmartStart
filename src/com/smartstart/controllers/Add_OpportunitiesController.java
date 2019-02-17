@@ -114,7 +114,7 @@ public class Add_OpportunitiesController implements Initializable {
     
         
         OpportunityService Os=new OpportunityService();
-        Os.create_Opportunity(O, 1);
+        Os.create_Opportunity(O, 2);
         Profile_OpportunitiesController P=new Profile_OpportunitiesController();
         annuler();
         
@@ -150,7 +150,7 @@ public class Add_OpportunitiesController implements Initializable {
 
         Opportunity O=new Opportunity(job_title.getText(),Job_category.getText().toString(),job_description.getText(),Float.parseFloat(Budget.getText()),0,date,1);
         OpportunityService Os=new OpportunityService();
-        Os.create_Opportunitydraft(O,1);
+        Os.create_Opportunitydraft(O,2);
         annuler();
     }
     private void alert1(String Message)

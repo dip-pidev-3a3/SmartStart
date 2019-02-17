@@ -263,22 +263,21 @@ java.util.Date utilDate = new java.util.Date();
     public void update_opportunity(Opportunity o, int id_opportunityC) {
         PreparedStatement ps = null;
         try {
-            String query = "UPDATE `opportunity` SET `job_title`=?,`job_category`=?,`job_description`=?,"
-                    + "`Budget`=?,`job_Draft`=?,"
-                    + "`job_Duration`=?,`Expiry_date`=?,`added_date`=?,`id_entreprise`=? WHERE id_opp=" + id_opportunityC;
+            String query = "UPDATE `opportunity` SET `job_title`=?,`job_category`=?,`job_description`=?,`Budget`=?,`Expiry_date`=? WHERE id_opp=" + id_opportunityC;
             ps = connection.prepareStatement(query);
+            System.out.println(query);
             ps.setString(1, o.getJob_title());
             ps.setString(2, o.getJob_category());
             ps.setString(3, o.getJob_description());
             ps.setFloat(4, o.getBudget());
-            ps.setInt(5, 1);
-            ps.setString(6,o.getJob_Duration());
-            ps.setDate(7, (Date) o.getExpiry_date());
-            ps.setDate(8, (Date) o.getAdded_date());
-            ps.setInt(9, o.getId_Entreprise());
+       
+         
+            ps.setDate(5, (Date) o.getExpiry_date());
+            
 
             System.out.println(ps);
             ps.executeUpdate();
+            
 
         } catch (Exception e) {
             System.out.println(e);
@@ -319,6 +318,54 @@ java.util.Date utilDate = new java.util.Date();
          return toretrun;
          
      }
+      public ObservableList<Opportunity> getOpportunitiesFromApplications(int id_opp) {
+
+        PreparedStatement ps = null;
+        PreparedStatement ps2 = null;
+        ResultSet rs = null;
+        ResultSet rs2 = null;
+        Listeopp = FXCollections.observableArrayList();
+        try {
+            String query = "select * from opportunity where id_opp=" +id_opp;
+            ps = connection.prepareStatement(query);
+            System.out.println(ps);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+                 Listeopp.add(new Opportunity(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getInt(6), rs.getString(7), rs.getDate(8), rs.getDate(9), rs.getInt(10)));
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        Listeopp.forEach(e -> System.out.println(e));
+        return Listeopp;
+
+    }
+      public Opportunity getOpportunityById(int id_opp) {
+
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String query = "select * from opportunity where id_opp=" + id_opp;
+            ps = connection.prepareStatement(query);
+            //ps.setString(1, sl_no);
+            System.out.println(ps);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+
+        
+                Opportunity o = new Opportunity(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getFloat(5), rs.getInt(6), rs.getString(7), rs.getDate(8), rs.getDate(9), rs.getInt(10));
+
+            }
+        } catch (Exception e) {
+           
+        }
+        return o;
+
+    }
+      
   
 
 }
