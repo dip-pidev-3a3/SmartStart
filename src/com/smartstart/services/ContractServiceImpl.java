@@ -6,6 +6,7 @@
 package com.smartstart.services;
 
 import com.smartstart.entities.Contract;
+import com.smartstart.entities.fos_user;
 import com.smartstart.util.ConnectionDb;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -75,6 +76,7 @@ public class ContractServiceImpl implements ContractServiceInterface {
         ResultSet rs = st.executeQuery(query);
         List<Contract> lc = new ArrayList<Contract>();
         Contract c = new Contract();
+        fos_user f = new fos_user();
         while (rs.next()) {
             c.setId_contract(rs.getInt("id_contract"));
             c.setPayment_method(rs.getString("payment_method"));
@@ -82,6 +84,10 @@ public class ContractServiceImpl implements ContractServiceInterface {
             c.setFinish_date(rs.getDate("finish_date"));
             c.setSum(rs.getFloat("sum"));
             c.setId_application(rs.getInt("id_application"));
+            c.setDescription(rs.getString("opportunity.job_description"));
+            fos_userService us = new fos_userService();
+            f=us.get_user_by_id(rs.getInt("application.id_freelancer"));
+            c.setFreelancer(f.getUsername());
             lc.add(c);
         }
         ObservableList lcf = FXCollections.observableArrayList(lc);

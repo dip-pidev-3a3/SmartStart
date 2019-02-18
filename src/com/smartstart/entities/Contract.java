@@ -18,6 +18,9 @@ public class Contract {
     private Date finish_date;
     private float sum;
     private int id_application;
+    private String freelancer;
+    private String description;
+    
     
     public Contract(){}
     
@@ -75,6 +78,21 @@ public class Contract {
 
     public void setId_application(int id_application) {
         this.id_application = id_application;
+    }
+    public String getFreelancer() {
+        return freelancer;
+    }
+
+    public void setFreelancer(String freelancer) {
+        this.freelancer = freelancer;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
     
