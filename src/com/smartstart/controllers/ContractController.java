@@ -264,7 +264,7 @@ public class ContractController implements Initializable {
         Alert a1 = new Alert(Alert.AlertType.CONFIRMATION);
         a1.setTitle("CONFIRMATION DIALOG");
         a1.setHeaderText("SUPPRESSION CONFIRMATION");
-        a1.setContentText("ARE YOU SURE THAT YOU WANT TO DELETE THIS Contract?");
+        a1.setContentText("ARE YOU SURE THAT YOU WANT TO DELETE THIS CONTRACT ?");
         Optional<ButtonType> result = a1.showAndWait();
         if (result.get() == ButtonType.OK) {
             return true;

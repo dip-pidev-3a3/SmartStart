@@ -86,7 +86,7 @@ public class OpportunityService implements OpporunityServiceInterface {
             System.out.println(ps);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Opportunity o = new Opportunity();
+                
                 o.setId(rs.getInt("id_opp"));
                 o.setJob_title(rs.getString("job_title"));
                 o.setJob_category(rs.getString("job_category"));
