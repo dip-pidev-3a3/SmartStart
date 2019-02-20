@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,14 +13,14 @@
       <Label fx:id="application_id" layoutX="512.0" layoutY="145.0" text="id_application" />
       <Label fx:id="contract_id" layoutX="527.0" layoutY="43.0" text="id_contract" />
       <TextField fx:id="sum" layoutX="14.0" layoutY="153.0" />
-      <DatePicker fx:id="start" layoutX="294.0" layoutY="64.0" />
-      <DatePicker fx:id="finish" layoutX="294.0" layoutY="106.0" />
-      <Label fx:id="titles" layoutX="13.0" layoutY="21.0" text="Contract">
+      <Label fx:id="titles" layoutX="13.0" layoutY="21.0" text="Contract" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="470.0" AnchorPane.topAnchor="21.0">
          <font>
             <Font name="System Bold Italic" size="29.0" />
          </font>
       </Label>
-      <Button fx:id="update" layoutX="409.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Update" />
-      <Button fx:id="remove" layoutX="294.0" layoutY="153.0" mnemonicParsing="false" text="Remove" />
+      <Button fx:id="update" layoutX="409.0" layoutY="153.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" style="-fx-background-color: green;" text="Update" textFill="#fcf9f9" />
+      <Button fx:id="remove" layoutX="294.0" layoutY="153.0" mnemonicParsing="false" style="-fx-background-color: red;" text="Remove" textFill="WHITE" />
+      <TextField fx:id="start" layoutX="300.0" layoutY="64.0" />
+      <TextField fx:id="finish" layoutX="300.0" layoutY="106.0" />
    </children>
 </AnchorPane>

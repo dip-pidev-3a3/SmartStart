@@ -5,6 +5,7 @@
  */
 package com.smartstart.services;
 import com.smartstart.entities.Message;
+import com.smartstart.entities.fos_user;
 import com.smartstart.util.ConnectionDb;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -90,10 +91,10 @@ public class ChatServiceImpl implements ChatServiceInterface {
 	}   
 
     @Override
-    public ObservableList<Integer> discussionList(int id) throws SQLException{
+    public ObservableList<fos_user> discussionList(int id) throws SQLException{
         ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
-                String query = "SELECT * FROM `message` WHERE ((`message_from` = "+id+") OR (`message_to` = "+id+"))";
+                String query = "SELECT * FROM `messages` WHERE ((`message_from` = "+id+") OR (`message_to` = "+id+"))";
 		Statement st  = cn.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 List<Integer> l_id = new ArrayList<Integer>();
@@ -102,8 +103,16 @@ public class ChatServiceImpl implements ChatServiceInterface {
                     l_id.add(rs.getInt("message_to"));                  
                 }
                 l_id =  l_id.stream().distinct().filter(i->i!=id).collect(Collectors.toList());
-                ObservableList l_id_f = FXCollections.observableArrayList(l_id);
-                return l_id_f;
+                fos_userService us = new fos_userService();
+                List<fos_user> l_u = new ArrayList<fos_user>();
+                
+                for(int i=0;i<l_id.size();i++){
+                fos_user u = new fos_user();
+                u=us.get_user_by_id(l_id.get(i));
+                l_u.add(u);
+                }
+                ObservableList l_u_f = FXCollections.observableArrayList(l_u);
+                return l_u_f;
                 
     }
 

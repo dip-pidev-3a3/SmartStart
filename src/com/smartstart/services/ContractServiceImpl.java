@@ -6,6 +6,7 @@
 package com.smartstart.services;
 
 import com.smartstart.entities.Contract;
+import com.smartstart.entities.Opportunity;
 import com.smartstart.entities.fos_user;
 import com.smartstart.util.ConnectionDb;
 import java.sql.Connection;
@@ -15,6 +16,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -40,7 +43,7 @@ public class ContractServiceImpl implements ContractServiceInterface {
         java.sql.Date dateF = new java.sql.Date(c.getStart_date().getTime());
         st.setString(3, dateF.toString());
         st.setString(4, "" + c.getSum());
-        st.setString(5, "" + c.getId_application());
+        st.setString(5, "" + c.getApplication().getId());
         st.execute();
     }
 
@@ -68,28 +71,37 @@ public class ContractServiceImpl implements ContractServiceInterface {
     }
 
     @Override
-    public ObservableList<Contract> listContract(int idEntreprise) throws SQLException {
+    public ObservableList<Contract> listContract(int idEntreprise)   {
+        List<Contract> lc = new ArrayList<Contract>();
+        try {
         ConnectionDb db = ConnectionDb.getInstance();
         Connection cn = db.getCnx();
         String query = "SELECT * FROM `contract`,`application`,`opportunity` WHERE ((contract.id_application = application.id_application) AND (application.id_opportunity = opportunity.id_opp) AND (opportunity.id_entreprise = " + idEntreprise + "))";
         Statement st = cn.createStatement();
         ResultSet rs = st.executeQuery(query);
-        List<Contract> lc = new ArrayList<Contract>();
-        Contract c = new Contract();
-        fos_user f = new fos_user();
+        
         while (rs.next()) {
-            c.setId_contract(rs.getInt("id_contract"));
-            c.setPayment_method(rs.getString("payment_method"));
-            c.setStart_date(rs.getDate("Start_date"));
-            c.setFinish_date(rs.getDate("finish_date"));
-            c.setSum(rs.getFloat("sum"));
-            c.setId_application(rs.getInt("id_application"));
-            c.setDescription(rs.getString("opportunity.job_description"));
-            fos_userService us = new fos_userService();
-            f=us.get_user_by_id(rs.getInt("application.id_freelancer"));
-            c.setFreelancer(f.getUsername());
-            lc.add(c);
+                Contract c = new Contract();
+                c.setId_contract(rs.getInt("id_contract"));
+                c.setPayment_method(rs.getString("payment_method"));
+                c.setStart_date(rs.getDate("Start_date"));
+                c.setFinish_date(rs.getDate("finish_date"));
+                c.setSum(rs.getFloat("sum"));
+                c.getApplication().setId(rs.getInt("id_application"));
+                OpportunityService os=new OpportunityService();
+                Opportunity o = os.Display_One_Opportunity(rs.getInt("id_opp"));
+                c.getApplication().setOpportunity(o);
+                //c.getApplication().getOpportunity().setJob_description(rs.getString("opportunity.job_description"));               
+                fos_userService us = new fos_userService();
+                fos_user u = us.get_user_by_id(rs.getInt("application.id_freelancer"));
+                c.getUser().setUsername(u.getUsername());
+                c.getUser().setId(u.getId());
+                lc.add(c);
         }
+            } catch (SQLException ex) {
+                Logger.getLogger(ContractServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         ObservableList lcf = FXCollections.observableArrayList(lc);
         return lcf;
 

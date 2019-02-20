@@ -8,19 +8,16 @@ package com.smartstart.controllers;
 import com.smartstart.entities.Contract;
 import com.smartstart.services.ContractServiceImpl;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 
 /**
  * FXML Controller class
@@ -36,41 +33,59 @@ public class ContractGUIIntController implements Initializable {
     @FXML
     private ImageView pic1;
     @FXML
-    private Pane pnlCustomer;
-    @FXML
-    private Pane pnlOrders;
-    @FXML
-    private Pane pnlMenus;
-    @FXML
-    private Pane pnlOverview;
-    @FXML
-    private TextField filter;
-    @FXML
     private Label count;
-    @FXML
-    private VBox pnItems;
     ObservableList<Contract> data;
     @FXML
     private ListView<Contract> List;
+    @FXML
+    private TextField recherche;
 
     /**
      * Initializes the controller class.
      */
-   
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ContractServiceImpl S=new ContractServiceImpl();
-        try {
-            data=S.listContract(1);
-             List.setItems(data);
-             data.forEach(System.out::println);
-        
-        List.setCellFactory(ContractListView -> new ContractCellController());
-        } catch (SQLException ex) {
-            Logger.getLogger(ContractGUIIntController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
+        dataRefresh();
+
     }
-    
+
+    public void initFilter() {
+        FilteredList<Contract> filteredData = new FilteredList<>(data, p -> true);
+        recherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(cont -> {
+                // If filter text is empty, display all persons.
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                // Compare first name and last name of every person with filter text.
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if ((cont.getApplication().getOpportunity().getJob_title().toLowerCase().contains(lowerCaseFilter)) || (cont.getUser().getUsername().toLowerCase().contains(lowerCaseFilter))) {
+                    return true; // Filter matches first name.
+                }
+                return false; // Does not match.
+            });
+        });
+        SortedList<Contract> sortedData = new SortedList<>(filteredData);
+        List.setItems(sortedData);
+        count.setText(String.valueOf(sortedData.stream().count()));
+
+    }
+
+    public void dataRefresh() {
+        ContractServiceImpl S = new ContractServiceImpl();
+
+        int i = S.CountContracts(1);
+        count.setText(String.valueOf(i));
+        data = S.listContract(1);
+        List.setItems(data);
+        data.forEach(System.out::println);
+
+        List.setCellFactory(ContractListView -> new ContractCellController());
+
+        initFilter();
+
+    }
+
 }

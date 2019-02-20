@@ -54,7 +54,7 @@ public class FXMLDocumentController implements Initializable {
     }
     @FXML
     private void ChangeScene1(ActionEvent event) throws IOException {
-         Parent tableViewOpportunity=FXMLLoader.load(getClass().getResource("/com/smartstart/gui/ContractGUIInt.fxml"));
+         Parent tableViewOpportunity=FXMLLoader.load(getClass().getResource("/com/smartstart/gui/ChatGui.fxml"));
          Scene tableViewOpportunityScene=new Scene (tableViewOpportunity);
          Stage window=(Stage)((Node)event.getSource()).getScene().getWindow();
          window.setScene(tableViewOpportunityScene);

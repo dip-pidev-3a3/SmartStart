@@ -6,7 +6,6 @@
 package com.smartstart.entities;
 
 import java.sql.Date;
-import javafx.beans.property.SimpleIntegerProperty;
 
 /**
  *
@@ -14,7 +13,7 @@ import javafx.beans.property.SimpleIntegerProperty;
  */
 public class Opportunity {
 
-    private SimpleIntegerProperty id_opp;
+    private int id_opp;
     private String job_title;
     private String job_category;
     private String job_description;
@@ -28,8 +27,8 @@ public class Opportunity {
     public Opportunity() {
     }
 
-    public Opportunity(String job_title, String job_category, String job_description, float budget, int job_Draft, Date Expiry_Date,Integer id_entreprise) {
-        
+    public Opportunity(String job_title, String job_category, String job_description, float budget, int job_Draft, Date Expiry_Date, Integer id_entreprise) {
+
         this.job_title = job_title;
         this.job_category = job_category;
         this.job_description = job_description;
@@ -47,7 +46,7 @@ public class Opportunity {
     }
 
     public Opportunity(int id_opp, String job_title, String job_category, String job_description, float budget, int job_draft, String job_duration, Date Expiry_date, Date Added_date, int id_entreprise) {
-        this.id_opp = new SimpleIntegerProperty(id_opp);
+        this.id_opp = id_opp;
         this.job_title = job_title;
         this.job_category = job_category;
         this.job_description = job_description;
@@ -58,22 +57,21 @@ public class Opportunity {
         this.id_entreprise = id_entreprise;
         this.job_Draft = job_draft;
     }
-    public Opportunity (String job_title,String job_category,String description,Date fin,Float Bu)
-    {
-        this.job_title=job_title;
-        this.job_category=job_category;
-        this.job_description=description;
-        this.Expiry_Date=fin;
-        this.budget=Bu;
+
+    public Opportunity(String job_title, String job_category, String description, Date fin, Float Bu) {
+        this.job_title = job_title;
+        this.job_category = job_category;
+        this.job_description = description;
+        this.Expiry_Date = fin;
+        this.budget = Bu;
     }
 
-
     public int getId_Opp() {
-        return id_opp.get();
+        return id_opp;
     }
 
     public void setId(int id_opp) {
-        this.id_opp.set(id_opp);
+        this.id_opp = id_opp;
     }
 
     public String getJob_title() {
