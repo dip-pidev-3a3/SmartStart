@@ -39,8 +39,8 @@ public class ChatServiceImpl implements ChatServiceInterface {
                 Connection cn = db.getCnx();
                 String query = "INSERT INTO `messages`(`message_from`, `message_to`, `content`, `attachement` , `date_message` , `viewed`) VALUES (?,?,?,?,?,?)";
 		PreparedStatement st  = cn.prepareStatement(query);
-                st.setInt(1, m.getMessage_from());
-                st.setInt(2,m.getMessage_to());
+                st.setInt(1, m.getMessage_from().getId());
+                st.setInt(2,m.getMessage_to().getId());
                 st.setString(3,m.getContent());
                 st.setString(4,m.getAttachment());
                 java.sql.Date date = new java.sql.Date(m.getDate_message().getTime());
@@ -120,10 +120,25 @@ public class ChatServiceImpl implements ChatServiceInterface {
     public ObservableList<Message> getMessages(int id_user1, int id_user2) throws SQLException {
         ConnectionDb db = ConnectionDb.getInstance();
                 Connection cn = db.getCnx();
-                String query = "SELECT * FROM `message` WHERE (((`message_from` = "+id_user1+") AND (`message_to` = "+id_user2+")) OR ((`message_from` = "+id_user2+") AND (`message_to` = "+id_user1+")))";
+                String query = "SELECT * FROM `messages` WHERE (((`message_from` = "+id_user1+") AND (`message_to` = "+id_user2+")) OR ((`message_from` = "+id_user2+") AND (`message_to` = "+id_user1+")))";
 		Statement st  = cn.createStatement();
                 ResultSet rs = st.executeQuery(query);
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                List<Message> l_m = new ArrayList<Message>();
+                fos_userService fs = new fos_userService();
+                while(rs.next()){
+                    Message m = new Message();  
+                    m.setContent(rs.getString("content"));
+                    m.setDate_message(rs.getDate("date_message"));
+                    m.setId_message(rs.getInt("id_message"));
+                    m.setMessage_from(fs.get_user_by_id(rs.getInt("message_from")));
+                    m.setMessage_to(fs.get_user_by_id(rs.getInt("message_to")));
+                    m.setViewed(rs.getInt("viewed"));
+                    m.setAttachment(rs.getString("attachement"));
+                    l_m.add(m);
+                }
+                ObservableList l_m_f = FXCollections.observableArrayList(l_m);
+                return l_m_f;
+        
     }
 
 }

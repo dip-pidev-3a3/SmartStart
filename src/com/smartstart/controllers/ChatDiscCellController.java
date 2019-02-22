@@ -7,6 +7,7 @@ package com.smartstart.controllers;
 
 import com.smartstart.entities.Contract;
 import com.smartstart.entities.fos_user;
+import com.smartstart.services.ChatServiceImpl;
 import com.smartstart.services.ContractServiceImpl;
 import java.io.IOException;
 import java.net.URL;
@@ -69,37 +70,39 @@ public class ChatDiscCellController extends ListCell<fos_user> {
 
             user.setText(student.getName()+" "+student.getLast_name());
 
-            /*user.setOnAction(new EventHandler<ActionEvent>() {
+            user.setOnAction(new EventHandler<ActionEvent>() {
 
                 @Override
                 public void handle(ActionEvent t) {
 
-                    ContractServiceImpl cs = new ContractServiceImpl();
+                    ChatServiceImpl cs = new ChatServiceImpl();
                     try {
-                        cs.removeContract(student.getId_contract());
+                        ChatController.dataMessage = cs.getMessages(1, 2);
+                        
 
                     } catch (SQLException ex) {
                         Logger.getLogger(ContractCellController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                     Parent tableViewContract;
-                    try {
-                        tableViewContract = FXMLLoader.load(getClass().getResource("/com/smartstart/gui/ContractGUIInt.fxml"));
-                        Scene tableViewContractScene=new Scene (tableViewContract);
-                        Stage window=(Stage)((Node)t.getSource()).getScene().getWindow();
-                        window.setScene(tableViewContractScene);
-                    } catch (IOException ex) {
-                        Logger.getLogger(ContractCellController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    Parent tableViewContract;
+                        try {
+                            tableViewContract = FXMLLoader.load(getClass().getResource("/com/smartstart/gui/ChatGui.fxml"));
+                            Scene tableViewContractScene = new Scene(tableViewContract);
+                            Stage window = (Stage) ((Node) t.getSource()).getScene().getWindow();
+                            window.setScene(tableViewContractScene);
+                        } catch (IOException ex) {
+                            Logger.getLogger(ContractCellController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+               
          
 
                 }
 
             });
-        };*/
+        };
 
         setText(null);
         setGraphic(gridPane);
     }
     
 }
-}
+

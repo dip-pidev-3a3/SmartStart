@@ -43,7 +43,7 @@ public class ContractServiceImpl implements ContractServiceInterface {
         java.sql.Date dateF = new java.sql.Date(c.getStart_date().getTime());
         st.setString(3, dateF.toString());
         st.setString(4,String.valueOf(c.getSum()));
-        st.setString(5,String.valueOf(c.getApplication().getId()));
+        st.setInt(5,c.getApplication().getId());
         st.execute();
     }
 

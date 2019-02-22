@@ -48,11 +48,11 @@ public class ContractCellController extends ListCell<Contract> {
     @FXML
     private Label username;
     @FXML
-    private TextField sum;
+    private Label sum;
     @FXML
-    private TextField start;
+    private Label start;
     @FXML
-    private TextField finish;
+    private Label finish;
     @FXML
     private Label application_id;
     @FXML
@@ -135,6 +135,7 @@ public class ContractCellController extends ListCell<Contract> {
                         } catch (IOException ex) {
                             Logger.getLogger(ContractCellController.class.getName()).log(Level.SEVERE, null, ex);
                         }
+                       
                     }
 
                 }

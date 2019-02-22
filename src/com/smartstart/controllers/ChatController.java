@@ -29,6 +29,8 @@ import javafx.scene.image.ImageView;
 public class ChatController implements Initializable {
     
     private ObservableList<fos_user> data;
+    public static ObservableList<Message> dataMessage;
+    
     ChatServiceImpl cs = new ChatServiceImpl();
     @FXML
     private ListView<fos_user> List;
@@ -60,6 +62,7 @@ public class ChatController implements Initializable {
         count.setText(String.valueOf(data.size()));
         List.setItems(data);
         data.forEach(System.out::println);
+        messages.setItems(dataMessage);
 
         List.setCellFactory(ChatListView -> new ChatDiscCellController());
         

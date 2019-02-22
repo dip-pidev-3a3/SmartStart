@@ -72,14 +72,19 @@ public class ApplicationService {
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            String query = "select * from application where id_application=" + searchedapp;
+            String query = "SELECT * FROM `application` WHERE id_application="+searchedapp;
             ps = connection.prepareStatement(query);
 
             System.out.println(ps);
             rs = ps.executeQuery();
-            if (rs.next()) {
-                Application app = new Application(rs.getInt(1), p.getOpportunityById(rs.getInt(2)), p1.get_user_by_id(rs.getInt(3)), rs.getString(4));
-
+            while (rs.next()) {
+                OpportunityService os=new OpportunityService();
+        fos_userService fs=new fos_userService();
+                Application app = new Application();
+                app.setFreelancer(fs.get_user_by_id(rs.getInt("id_freelancer")));
+                app.setId(rs.getInt("id_application"));
+                app.setOpportunity(os.getOpportunityById(rs.getInt("id_opportunity")));
+                app.setState(rs.getString("state"));
             }
         } catch (Exception e) {
             System.out.println(e);

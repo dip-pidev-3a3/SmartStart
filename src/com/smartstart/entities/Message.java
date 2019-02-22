@@ -14,15 +14,18 @@ import java.util.Date;
 public class Message {
     
     private int id_message;
-    private int message_from;
-    private int message_to;
+    private fos_user message_from;
+    private fos_user message_to;
     private String content;
     private String attachment;
     private Date date_message;
     private int viewed;
     
-    public Message() {}
-    public Message(int id_message,int message_from,int message_to,String content,String attachment,Date date_message,int viewed){
+    public Message() {
+    message_from=new fos_user();
+    message_to=new fos_user();
+    }
+    public Message(int id_message,fos_user message_from,fos_user message_to,String content,String attachment,Date date_message,int viewed){
     this.id_message = id_message;
     this.message_from = message_from;
     this.message_to = message_to;
@@ -41,19 +44,19 @@ public class Message {
         this.id_message = id_message;
     }
 
-    public int getMessage_from() {
+    public fos_user getMessage_from() {
         return message_from;
     }
 
-    public void setMessage_from(int message_from) {
+    public void setMessage_from(fos_user message_from) {
         this.message_from = message_from;
     }
 
-    public int getMessage_to() {
+    public fos_user getMessage_to() {
         return message_to;
     }
 
-    public void setMessage_to(int message_to) {
+    public void setMessage_to(fos_user message_to) {
         this.message_to = message_to;
     }
 
@@ -88,6 +91,12 @@ public class Message {
     public void setViewed(int viewed) {
         this.viewed = viewed;
     }
+
+    @Override
+    public String toString() {
+        return this.getMessage_from().getUsername()+" : "+this.getContent();
+    }
+    
     
 
     

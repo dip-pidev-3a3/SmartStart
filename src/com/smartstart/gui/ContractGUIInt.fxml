@@ -14,7 +14,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.ContractGUIIntController">
    <children>
-      <ListView fx:id="List" layoutX="313.0" layoutY="157.0" prefHeight="348.0" prefWidth="650.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="313.0" AnchorPane.rightAnchor="87.0" AnchorPane.topAnchor="157.0" />
+      <ListView fx:id="List" layoutX="275.0" layoutY="157.0" prefHeight="394.0" prefWidth="745.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="157.0" />
       <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <ImageView fx:id="Profile_pic" fitHeight="73.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
@@ -126,7 +126,7 @@
             <Font name="System Bold Italic" size="36.0" />
          </font>
       </Label>
-      <Label fx:id="count" layoutX="347.0" layoutY="92.0" prefHeight="32.0" prefWidth="69.0" text="count" textFill="#c61010" AnchorPane.bottomAnchor="449.0" AnchorPane.leftAnchor="347.0" AnchorPane.rightAnchor="634.0" AnchorPane.topAnchor="92.0">
+      <Label fx:id="count" layoutX="347.0" layoutY="92.0" prefHeight="32.0" prefWidth="69.0" text="count" textFill="#c61010" AnchorPane.leftAnchor="347.0" AnchorPane.topAnchor="92.0">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

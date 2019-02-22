@@ -39,13 +39,26 @@ public class ContractGUIIntController implements Initializable {
     private ListView<Contract> List;
     @FXML
     private TextField recherche;
+    @FXML
+    private ListView<?> display;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        dataRefresh();
+        ContractServiceImpl S = new ContractServiceImpl();
+
+        int i = S.CountContracts(1);
+        count.setText(String.valueOf(i));
+        data = S.listContract(1);
+        List.setItems(data);
+        data.forEach(System.out::println);
+
+        List.setCellFactory(ContractListView -> new ContractCellController());
+
+        initFilter();
+
 
     }
 
@@ -67,25 +80,14 @@ public class ContractGUIIntController implements Initializable {
                 return false; // Does not match.
             });
         });
-        SortedList<Contract> sortedData = new SortedList<>(filteredData);
+        SortedList<Contract> sortedData = new SortedList<>(filteredData);        
         List.setItems(sortedData);
-        count.setText(String.valueOf(sortedData.stream().count()));
+        long s = filteredData.stream().count();
+        count.setText(String.valueOf(s));
+        
 
     }
-
-    public void dataRefresh() {
-        ContractServiceImpl S = new ContractServiceImpl();
-
-        int i = S.CountContracts(1);
-        count.setText(String.valueOf(i));
-        data = S.listContract(1);
-        List.setItems(data);
-        data.forEach(System.out::println);
-
-        List.setCellFactory(ContractListView -> new ContractCellController());
-
-        initFilter();
-
-    }
-
 }
+
+
+    

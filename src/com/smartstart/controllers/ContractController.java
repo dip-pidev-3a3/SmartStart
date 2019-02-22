@@ -6,9 +6,7 @@
 package com.smartstart.controllers;
 
 import com.smartstart.entities.Contract;
-import com.smartstart.entities.Opportunity;
 import com.smartstart.services.ContractServiceImpl;
-import com.smartstart.services.OpportunityService;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Date;
