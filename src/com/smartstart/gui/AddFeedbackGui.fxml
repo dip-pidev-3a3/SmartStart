@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.Rating?>
+
+<AnchorPane fx:id="parent" prefHeight="556.0" prefWidth="627.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.smartstart.controllers.AddFeedbackGuiController">
+    <children>
+      <BorderPane prefHeight="364.0" prefWidth="721.0" AnchorPane.bottomAnchor="192.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Pane prefHeight="272.0" prefWidth="787.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button fx:id="addExport" layoutX="481.0" layoutY="393.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: green;" stylesheets="@stylesheet.css" text="Add And Export" textFill="WHITE">
+                     <cursor>
+                        
+                     </cursor>
+                  </Button>
+                  <Rating fx:id="rating" layoutX="422.0" layoutY="49.0" prefHeight="27.0" prefWidth="176.0" />
+                  <Text layoutX="88.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set Rating">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="88.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set Comment">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="comment" layoutX="422.0" layoutY="137.0" prefHeight="131.0" prefWidth="226.0" />
+               </children>
+            </Pane>
+         </center>
+         <top>
+            <Label fx:id="type" alignment="CENTER" prefHeight="92.0" prefWidth="853.0" style="-fx-background-color: #00A2D3;" styleClass="card-01" stylesheets="@stylesheet.css" text="Feedback" textFill="#f2e4e4" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </top></BorderPane>
+      <Button fx:id="add" layoutX="276.0" layoutY="485.0" mnemonicParsing="false" onAction="#AddFeedback" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: #00A2D3;" stylesheets="@stylesheet.css" text="Add Feedback" textFill="WHITE">
+         <cursor>
+           
+         </cursor>
+      </Button>
+      <Separator layoutX="2.0" layoutY="449.0" prefHeight="7.0" prefWidth="713.0" />
+      <Button fx:id="CancelButton" layoutX="66.0" layoutY="485.0" mnemonicParsing="false" onAction="#annuler" prefHeight="40.0" prefWidth="162.0" style="-fx-background-color: red;" stylesheets="@stylesheet.css" text="Cancel" textFill="WHITE">
+         <cursor>
+          
+         </cursor>
+      </Button>
+    </children>
+</AnchorPane>
